@@ -2,6 +2,11 @@
 
 ---
 ## Week 1 Reading Response  
+Before reading these texts, I thought of code mainly as a tool—a language that allows me to create new forms, interactions, and artistic experiences. Now I see code differently. To me, code is a system of rules that translates reality into something a computer can process, but this translation is never neutral. When reality is encoded into data, some complexity, randomness, and ambiguity are inevitably lost. At the same time, the computer’s own logic can produce new possibilities that do not necessarily exist in the physical world.
+
+I also began to see how code can work both for and against me. It works for me when I use it as a creative material to generate unexpected forms and interactions. But it can work against me when the rules embedded in software begin to organize my behavior without me questioning them. This makes me interested in the political and social dimensions of code: Who decides the rules? Why are they designed this way? And could they be organized differently?
+
+This semester, I am excited to experiment with code not only as a means of making things, but as a way of questioning existing systems. I want to explore hackability and software art, and try to create works that make familiar rules feel strange. Rather than using code simply to represent reality, I want to see whether I can use it to imagine alternative ways of organizing human behavior and experience.
 
 
 This is a README file that can be used to describe and document your assignment.
