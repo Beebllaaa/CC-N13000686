@@ -1,7 +1,8 @@
 function setup() {
     createCanvas(800, 600);
+    background(180,10,80);
 }
 
 function draw() {
-    background(220);
+    ellipse(100,400,50);
 }
