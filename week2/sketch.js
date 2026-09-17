@@ -12,12 +12,17 @@ function setup() {
     xPods = width/2;
     yPods = height/2;
     
+    angle1 = 0;
+    angle2 = 0;
+    angle3 = 0;
+    angle4 = 0;
+    angle5 = 0;
 }
 
 function draw() {
     noStroke();
     background(180,10,90);
-    
+
     //rect1
     push();
     translate(xPods, yPods);
