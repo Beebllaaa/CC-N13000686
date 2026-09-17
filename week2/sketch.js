@@ -11,11 +11,6 @@ function setup() {
     xPods = width/2;
     yPods = height/2;
     
-    angle1 = random(360);
-    angle2 = random(360);
-    angle3 = random(360);
-    angle4 = random(360);
-    angle5 = random(360);
 }
 
 function draw() {
