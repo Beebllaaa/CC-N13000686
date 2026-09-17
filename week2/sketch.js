@@ -1,8 +1,11 @@
 function setup() {
-    createCanvas(800, 600);
-    background(180,10,80);
+    createCanvas(windowWidth, windowHeight);
+    colorMode(HSB);
+    background(180,10,90);
 }
 
 function draw() {
-    ellipse(100,400,50);
+    translate(width/2, height/2);
+    noStroke();
+    ellipse(0,0,50);
 }
