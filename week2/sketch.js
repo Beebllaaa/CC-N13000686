@@ -1,6 +1,5 @@
 let xPods;
 let yPods;
-let randomX = random(1,10);
 let angle1, angle2, angle3, angle4, angle5;
 
 function setup() {
@@ -64,6 +63,13 @@ function draw() {
     pop();
 }
 
+function mousePressed() {
+    angle1 = random(360);
+    angle2 = random(360);
+    angle3 = random(360);
+    angle4 = random(360);
+    angle5 = random(360);
+}
 
 
 
