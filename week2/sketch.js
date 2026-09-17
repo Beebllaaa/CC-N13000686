@@ -15,6 +15,8 @@ function setup() {
 function draw() {
     noStroke();
 
+    
+    //rect1
     push();
     translate(xPods, yPods);
     rotate(angle);
@@ -22,31 +24,35 @@ function draw() {
     rect(0,0,50);
     pop();
 
+    //rect2
     push();
     translate(xPods/2, yPods/2);
     rotate(angle);
-    fill(120,40,60);   
+    fill(50,80,100);   
     rect(0,0,50);
     pop();
 
+    //rect3
     push();
     translate(xPods/2*3, yPods/2);
     rotate(angle);
-    fill(120,40,60);   
+    fill(200,60,70);   
     rect(0,0,50);
     pop();
 
+    //rect4
     push();
     translate(xPods/2, yPods/2*3);
     rotate(angle);
-    fill(120,40,60);   
+    fill(300,40,60);   
     rect(0,0,50);
     pop();
 
+    //rect5
     push();
     translate(xPods/2*3, yPods/2*3);
     rotate(angle);
-    fill(120,40,60);   
+    fill(10,60,90);   
     rect(0,0,50);
     pop();
 }
