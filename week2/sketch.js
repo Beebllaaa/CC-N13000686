@@ -71,11 +71,11 @@ function mousePressed() {
     angle4 = random(360);
     angle5 = random(360);
 
-    scale1 = random(0.5, 2);
-    scale2 = random(0.5, 2);
-    scale3 = random(0.5, 2);
-    scale4 = random(0.5, 2);
-    scale5 = random(0.5, 2);
+    scale1 = random(1, 10);
+    scale2 = random(1, 10);
+    scale3 = random(1, 10);
+    scale4 = random(1, 10);
+    scale5 = random(1, 10);
 }
 
 
