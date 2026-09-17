@@ -1,6 +1,7 @@
 let xPods;
 let yPods;
 let angle1, angle2, angle3, angle4, angle5;
+let scale1, scale2, scale3, scale4, scale5;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -21,6 +22,7 @@ function draw() {
     push();
     translate(xPods, yPods);
     rotate(angle1);
+    scale(scale1);
     fill(120,40,60);   
     rect(0,0,50);
     pop();
@@ -29,6 +31,7 @@ function draw() {
     push();
     translate(xPods/2, yPods/2);
     rotate(angle2);
+    scale(scale2);
     fill(50,80,100);   
     rect(0,0,50);
     pop();
@@ -37,6 +40,7 @@ function draw() {
     push();
     translate(xPods/2*3, yPods/2);
     rotate(angle3);
+    scale(scale3);
     fill(200,60,70);   
     rect(0,0,50);
     pop();
@@ -45,6 +49,7 @@ function draw() {
     push();
     translate(xPods/2, yPods/2*3);
     rotate(angle4);
+    scale(scale4);
     fill(300,40,60);   
     rect(0,0,50);
     pop();
@@ -53,6 +58,7 @@ function draw() {
     push();
     translate(xPods/2*3, yPods/2*3);
     rotate(angle5);
+    scale(scale5);
     fill(10,60,90);   
     rect(0,0,50);
     pop();
@@ -64,6 +70,12 @@ function mousePressed() {
     angle3 = random(360);
     angle4 = random(360);
     angle5 = random(360);
+
+    scale1 = random(0.5, 2);
+    scale2 = random(0.5, 2);
+    scale3 = random(0.5, 2);
+    scale4 = random(0.5, 2);
+    scale5 = random(0.5, 2);
 }
 
 
