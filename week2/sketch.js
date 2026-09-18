@@ -29,7 +29,7 @@ function draw() {
     angle1++;
     rotate(angle1);
     scale(scale1);
-    fill(120,40,60,50);   
+    fill(120,40,60,0.7);   
     rect(0,0,50);
     pop();
 
@@ -39,7 +39,7 @@ function draw() {
     angle2++;
     rotate(angle2);
     scale(scale2);
-    fill(50,80,100,50);   
+    fill(50,80,100,0.7);   
     rect(0,0,50);
     pop();
 
@@ -49,7 +49,7 @@ function draw() {
     angle3++;
     rotate(angle3);
     scale(scale3);
-    fill(200,60,70,50);   
+    fill(200,60,70,0.7);   
     rect(0,0,50);
     pop();
 
@@ -59,7 +59,7 @@ function draw() {
     angle4++;
     rotate(angle4);
     scale(scale4);
-    fill(300,40,60,50);   
+    fill(300,40,60,0.7);   
     rect(0,0,50);
     pop();
 
@@ -69,7 +69,7 @@ function draw() {
     angle5++;
     rotate(angle5);
     scale(scale5);
-    fill(10,60,90,50);   
+    fill(10,60,90,0.7);   
     rect(0,0,50);
     pop();
 }
