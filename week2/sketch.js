@@ -31,17 +31,17 @@ function draw() {
     noStroke();
     background(180,10,90);
 
-    //rect1
+    //shape1
     push();
     translate(xPods, yPods);
     angle1++;
     rotate(angle1);
     scale(scale1);
     fill(H1,40,60,0.7);   
-    rect(0,0,50);
+    ellipse(0,0,50);
     pop();
 
-    //rect2
+    //shape2
     push();
     translate(xPods/2, yPods/2);
     angle2++;
@@ -51,17 +51,17 @@ function draw() {
     rect(0,0,50);
     pop();
 
-    //rect3
+    //shape3
     push();
     translate(xPods/2*3, yPods/2);
     angle3++;
     rotate(angle3);
     scale(scale3);
     fill(H3,60,70,0.7);   
-    rect(0,0,50);
+    triangle(0,0,50,50,0,100);
     pop();
 
-    //rect4
+    //shape4
     push();
     translate(xPods/2, yPods/2*3);
     angle4++;
@@ -71,7 +71,7 @@ function draw() {
     rect(0,0,50);
     pop();
 
-    //rect5
+    //shape5
     push();
     translate(xPods/2*3, yPods/2*3);
     angle5++;
