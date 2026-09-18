@@ -101,6 +101,8 @@ function mousePressed() {
     H4 = random(360);
     H5 = random(360);
 
+    console.log("H1:"+H1+", H2:"+H2+", H3:"+H3+", H4:"+H4+", H5:"+H5);
+
 }
 
 
