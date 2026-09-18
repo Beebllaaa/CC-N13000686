@@ -19,6 +19,12 @@ function setup() {
     angle3 = 0;
     angle4 = 0;
     angle5 = 0;
+
+    H1 = 120;
+    H2 = 50;
+    H3 = 200;
+    H4 = 300;
+    H5 = 10;
 }
 
 function draw() {
