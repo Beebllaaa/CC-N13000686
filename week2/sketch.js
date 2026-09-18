@@ -38,7 +38,7 @@ function draw() {
     rotate(angle1);
     scale(scale1);
     fill(H1,40,60,0.7);   
-    ellipse(0,0,50);
+    ellipse(10,0,50);
     pop();
 
     //shape2
