@@ -68,7 +68,7 @@ function draw() {
     rotate(angle4);
     scale(scale4);
     fill(H4,40,60,0.7);   
-    rect(0,0,50);
+    triangle(0,0,50,0,25,43);
     pop();
 
     //shape5
