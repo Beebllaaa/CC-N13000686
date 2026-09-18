@@ -1,25 +1,7 @@
 # week2
 
-## Getting Started
+## REPO
 
-Open `index.html` in your web browser and start editing `sketch.js`.
-
-## Running Locally
-
-For projects with media files, use a local server:
-
-```bash
-# Using Python
-python -m http.server 8000
-
-# Using Node.js
-npx http-server
-
-# Using VS Code Live Server extension
-# Right-click index.html -> "Open with Live Server"
-```
-
-## Resources
-
-- [p5.js 2.0](https://beta.p5js.org/)
-- [p5.js Reference](https://p5js.org/reference/)
+1. Before starting the drawing, I compiled a list of commands I already knew, aiming to practice every newly‑learned command. To keep the exercises focused, I chose basic squares as my practice subject.
+2. Prior to coding, I sketched my intended outcomes (including layout and animations) on paper. This allowed me to write code with clearer goals in mind.
+3. Translating hand‑drawn sketches into code has been a fascinating process. I had to break down what needed to be done step‑by‑step. In particular, writing commit summaries in GitHub after each iteration helped organize my thinking. It was very rewarding to turn rough, random ideas into precise, logical web‑based code.
