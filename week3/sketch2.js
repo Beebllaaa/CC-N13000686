@@ -1,10 +1,19 @@
-
+let x, y;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  
+  colorMode(HSB);
+  background(340,90,100);
+  x=120;
+  y=120;
 }
 
 function draw() {
-  
+  rectMode(CENTER);
+  push();
+  fill(50,50,100);
+  strokeWeight(40);
+  stroke(199,49,120);
+  rect(x, y, 200);
+  pop();
 }
