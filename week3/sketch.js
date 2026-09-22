@@ -1,6 +1,8 @@
 let recXpods;
 let recYpods;
 let xDir;
+let a;
+
 function setup() {
     colorMode(HSB);
     createCanvas(windowWidth, windowHeight);
@@ -8,6 +10,7 @@ function setup() {
     recXpods=windowWidth/2;
     recYpods=windowHeight/2;
     xDir=1;
+    a=0;
 }
 
 function draw() {
@@ -26,4 +29,10 @@ function draw() {
         xDir*=-1;
     }
     
+    if(mouseY<windowHeight/2){
+        a+=2;
+    } else {
+        a+=-2;
+    }
+
 }
