@@ -5,7 +5,6 @@ let yDir;
 let a;
 
 function setup() {
-    colorMode(HSB);
     createCanvas(windowWidth, windowHeight);
     background(340,200,100);
     recXpods=0;
