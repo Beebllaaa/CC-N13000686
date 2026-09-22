@@ -33,6 +33,9 @@ function draw() {
 
     if (Ypods>windowHeight-50 || Ypods<50){
         yDir*=-1;
+        fill(120,100,120);
+    } else {
+        fill(12,49,120);
     }
 
 
