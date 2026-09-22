@@ -1,8 +1,21 @@
+let recXpods;
+let recYpods;
 function setup() {
-    createCanvas(800, 600);
+    colorMode(HSB);
+    createCanvas(windowWidth, windowHeight);
+    background(340,200,100);
+    recXpods=windowWidth/2;
+    recYpods=windowHeight/2;
 }
 
 function draw() {
-    background(220);
-    rect(
+    background(340,200,100);
+    rectMode(CENTER);
+
+    //add a rectangle
+    fill(12,49,120);
+    strokeWeight(a);
+    stroke(12,49,120);
+    rect(recXpods, recYpods, 100);
+
 }
