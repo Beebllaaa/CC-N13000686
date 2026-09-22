@@ -14,7 +14,8 @@ function draw() {
     for(y=120; y<windowHeight; y+=300){
       push();
       fill(50,50,100);
-      strokeWeight(40);
+      //let strokeweight change with x and y 
+      strokeWeight(40*(x*y/5000000));
       stroke(199,49,120);
       rect(x, y, 200);
       pop();
