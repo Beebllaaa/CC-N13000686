@@ -1,6 +1,7 @@
 let recXpods;
 let recYpods;
 let xDir;
+let yDir;
 let a;
 
 function setup() {
@@ -10,6 +11,7 @@ function setup() {
     recXpods=0;
     recYpods=0;
     xDir=1;
+    yDir=1;
     a=0;
 }
 
@@ -22,12 +24,17 @@ function draw() {
     stroke(199,49,120);
     rect(recXpods, recYpods, 200);
 
-    //make the rectangle move back and forth across the screen
-     recXpods+=xDir*3;
-    if (recXpods>windowWidth-50 || recXpods<50){
-        xDir*=-1;
-    }
-    
+    //Make the square move inside the canvas
+    //  recXpods+=xDir*3;
+    //  recYpods+=yDir*3;
+    // if (recXpods>windowWidth-200 || recXpods<0){
+    //     xDir*=-1;
+    // }
+    // if (recYpods>windowHeight-200 || recYpods<0){
+    //     yDir*=-1;
+    // }
+
+    //When the mouse is in the upper half, the stroke increases; otherwise, it decreases.
     if(mouseY<windowHeight/2){
         a+=2;
     } else {
