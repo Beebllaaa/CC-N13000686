@@ -16,7 +16,7 @@ function draw() {
       push();
       fill(50,50,100);
       //let strokeweight change with x and y 
-      strokeWeight(40*(x*y/5000000));
+      strokeWeight(40*(x*y/3000000));
       stroke(199,49,120);
       translate(x, y);
       rotate(rot);
@@ -25,5 +25,6 @@ function draw() {
       rot+=0.01;
     }
   }
-  noLoop();
+  // noLoop();
+  
 } 
