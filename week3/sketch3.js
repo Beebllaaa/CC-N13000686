@@ -17,7 +17,7 @@ function draw() {
     background(340,200,100);
 
     //add a rectangle
-    // fill();
+    fill(30,10,100);
     ellipse(Xpods, Ypods, 100);
 
     //Make the square move inside the canvas
@@ -26,17 +26,17 @@ function draw() {
 
     if (Xpods>windowWidth-50 || Xpods<50){
         xDir*=-1;
-        fill(120,100,120);
-    } else{
-      fill(12,49,120);
-    }
+    } 
 
     if (Ypods>windowHeight-50 || Ypods<50){
         yDir*=-1;
-        fill(120,100,120);
-    } else {
-        fill(12,49,120);
+        
+    } 
+    
+    if (xDir>0){
+        fill(100,10,100);
+    }else{
+        fill(30,10,100);
     }
-
 
 }
