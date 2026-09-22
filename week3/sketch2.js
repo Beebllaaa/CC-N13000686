@@ -10,10 +10,14 @@ function setup() {
 
 function draw() {
   rectMode(CENTER);
-  push();
-  fill(50,50,100);
-  strokeWeight(40);
-  stroke(199,49,120);
-  rect(x, y, 200);
-  pop();
-}
+  for(x=120; x<windowWidth; x+=300){
+    for(y=120; y<windowHeight; y+=300){
+      push();
+      fill(50,50,100);
+      strokeWeight(40);
+      stroke(199,49,120);
+      rect(x, y, 200);
+      pop();
+    }
+  }
+} 
