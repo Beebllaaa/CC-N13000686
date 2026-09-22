@@ -4,7 +4,7 @@ let xDir;
 let yDir;
 
 function setup() {
-    colorMode(HSB);
+
     createCanvas(windowWidth, windowHeight);
     background(340,200,100);
     Xpods=50;
@@ -14,11 +14,8 @@ function setup() {
 }
 
 function draw() {
-    background(340,200,100);
-
-    //add a rectangle
-    fill(30,10,100);
-    ellipse(Xpods, Ypods, 100);
+    colorMode(HSB);
+    background(270,100,100);
 
     //Make the square move inside the canvas
      Xpods+=xDir*3;
@@ -33,10 +30,19 @@ function draw() {
         
     } 
     
-    if (xDir>0){
-        fill(100,10,100);
-    }else{
-        fill(30,10,100);
+    if (xDir>0 && yDir>0){
+        fill(190, 60, 90);
     }
+    if (xDir<0 && yDir>0){
+        fill(150,50,85);
+    }
+    if (xDir>0 && yDir<0){
+        fill(320, 45, 90);
+    }
+    if (xDir<0 && yDir<0){
+        fill(55,40,92);
+    }
+    noStroke();
 
+    ellipse(Xpods, Ypods, 100);
 }
