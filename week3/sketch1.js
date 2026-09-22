@@ -7,15 +7,14 @@ function setup() {
     colorMode(HSB);
     createCanvas(windowWidth, windowHeight);
     background(340,200,100);
-    recXpods=windowWidth/2;
-    recYpods=windowHeight/2;
+    recXpods=0;
+    recYpods=0;
     xDir=1;
     a=0;
 }
 
 function draw() {
     background(340,200,100);
-    rectMode(CENTER);
 
     //add a rectangle
     fill(12,49,120);
@@ -35,4 +34,9 @@ function draw() {
         a+=-2;
     }
 
+    for(let i=0; i<7; i++){
+        // make duplicate rectangles across the screen
+        rect(i * 200, i * 200, 200);
+    
+    }
 }
