@@ -20,8 +20,8 @@ function draw() {
     //add a rectangle
     fill(12,49,120);
     strokeWeight(a);
-    stroke(12,49,120);
-    rect(recXpods, recYpods, 100);
+    stroke(199,49,120);
+    rect(recXpods, recYpods, 200);
 
     //make the rectangle move back and forth across the screen
      recXpods+=xDir*3;
