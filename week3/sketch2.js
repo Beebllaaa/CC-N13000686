@@ -1,4 +1,5 @@
 let x, y;
+let rot=0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -18,9 +19,11 @@ function draw() {
       strokeWeight(40*(x*y/5000000));
       stroke(199,49,120);
       translate(x, y);
-      rotate(10*(x*y/50000000));
-      rect(x, y, 200);
+      rotate(rot);
+      rect(0, 0, 200);
       pop();
+      rot+=0.01;
     }
   }
+  noLoop();
 } 
