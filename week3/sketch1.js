@@ -22,7 +22,7 @@ function draw() {
     fill(12,49,120);
     strokeWeight(a);
     stroke(199,49,120);
-    rect(recXpods, recYpods, 200);
+    // rect(recXpods, recYpods, 100);
 
     //Make the square move inside the canvas
     //  recXpods+=xDir*3;
@@ -36,9 +36,9 @@ function draw() {
 
     //When the mouse is in the upper half, the stroke increases; otherwise, it decreases.
     if(mouseY<windowHeight/2){
-        a+=2;
+        a+=1;
     } else {
-        a+=-2;
+        a+=-1;
     }
 
     // for(let i=0; i<7; i++){
@@ -47,9 +47,9 @@ function draw() {
     
     // }
 
-    for(x=0; x<windowWidth; x+=200){
-        for(y=0; y<windowHeight; y+=200){
-            rect(x, y, 200);
+    for(x=50; x<windowWidth; x+=200){
+        for(y=50; y<windowHeight; y+=200){
+            rect(x, y, 100);
         }
 
     }
