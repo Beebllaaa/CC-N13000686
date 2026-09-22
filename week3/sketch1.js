@@ -41,9 +41,16 @@ function draw() {
         a+=-2;
     }
 
-    for(let i=0; i<7; i++){
-        // make duplicate rectangles across the screen
-        rect(i * 200, i * 200, 200);
+    // for(let i=0; i<7; i++){
+    //     // make duplicate rectangles across the screen
+    //     rect(i * 200, i * 200, 200);
     
+    // }
+
+    for(x=0; x<windowWidth; x+=200){
+        for(y=0; y<windowHeight; y+=200){
+            rect(x, y, 200);
+        }
+
     }
 }
