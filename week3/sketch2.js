@@ -25,6 +25,6 @@ function draw() {
       rot+=0.01;
     }
   }
-  // noLoop();
+  noLoop();
   
 } 
