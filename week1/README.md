@@ -8,6 +8,7 @@ I also began to see how code can work both for and against me. It works for me w
 
 This semester, I am excited to experiment with code not only as a means of making things, but as a way of questioning existing systems. I want to explore hackability and software art, and try to create works that make familiar rules feel strange. Rather than using code simply to represent reality, I want to see whether I can use it to imagine alternative ways of organizing human behavior and experience.
 
+---
 
 This is a README file that can be used to describe and document your assignment.
 
