@@ -23,7 +23,6 @@ function drawRectangle(x, y, inc) {
   translate(x, y);
   rotate(TWO_PI * noiseVal);
   scale(3*noiseVal);
-  strokeWeight(1*noiseVal);
   rect(0, 0, 40);
   pop();
 }
