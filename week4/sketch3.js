@@ -1,7 +1,7 @@
 // press 'r' for new random seed
 // press 's' to save
 
-let seed = 327;
+let seed = 367;
 let doExport = false;
 
 function setup() {
@@ -17,13 +17,14 @@ function keyPressed() {
   }
 }
 
-function drawLine(x, y, inc) {
+function drawShape(x, y, inc) {
   push();
   let noiseVal = noise(x * inc, y * inc);
-  translate(x+20, y+10);
-  scale(3*noiseVal);
+  translate(x, y);
+  scale(5*noiseVal);
   rotate(TWO_PI * noiseVal);
-  line(0, 0, 30*noiseVal, 10*noiseVal);
+  line(-10,0,10,0);
+  line(0,-10,0,10);
   pop();
 }
 
@@ -37,13 +38,13 @@ function draw() {
   if (doExport){
     beginRecordSvg("myOutput.svg");
   }
-  let step = 20; // space in grid
-  let inc = .002; // amt to incrment noise val
+  let step = 46; // space in grid
+  let inc = .001; // amt to incrment noise val
 
   // increment noiseVal every time through the loop
-  for (let x1 = step; x1 < width - step; x1 += step) {
-    for (let y1 = step; y1 < height - step; y1 += step) {
-      drawLine(x1, y1, inc); // this is our function
+  for (let x = step; x < width - step; x += step) {
+    for (let y = step; y < height - step; y += step) {
+      drawShape(x, y, inc); // this is our function
     }
   }
 
