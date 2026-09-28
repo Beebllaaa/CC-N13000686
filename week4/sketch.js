@@ -23,6 +23,7 @@ function drawRectangle(x, y, inc) {
   translate(x, y);
   rotate(TWO_PI * noiseVal);
   scale(3*noiseVal);
+  strokeWeight(1*noiseVal);
   rect(0, 0, 40);
   pop();
 }
@@ -34,6 +35,9 @@ function draw() {
   background(220);
   noFill();
 
+  if (doExport){
+    beginRecordSvg("myOutput.svg");
+  }
   let step = 46; // space in grid
   let inc = .001; // amt to incrment noise val
 
@@ -45,4 +49,8 @@ function draw() {
     }
   }
 
+   if (doExport){
+    endRecordSvg();
+    doExport = false;
+  }
 }
