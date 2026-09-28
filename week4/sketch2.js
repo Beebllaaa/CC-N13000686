@@ -20,9 +20,10 @@ function keyPressed() {
 function drawLine(x, y, inc) {
   push();
   let noiseVal = noise(x * inc, y * inc);
-  translate(x, y);
+  translate(x+20, y+10);
   scale(3*noiseVal);
-  line(0, 0, 40, 40);
+  rotate(TWO_PI * noiseVal);
+  line(0, 0, 30*noiseVal, 10*noiseVal);
   pop();
 }
 
@@ -36,8 +37,8 @@ function draw() {
   if (doExport){
     beginRecordSvg("myOutput.svg");
   }
-  let step = 46; // space in grid
-  let inc = .001; // amt to incrment noise val
+  let step = 20; // space in grid
+  let inc = .002; // amt to incrment noise val
 
   // increment noiseVal every time through the loop
   for (let x1 = step; x1 < width - step; x1 += step) {
