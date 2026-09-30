@@ -1,7 +1,7 @@
 // press 'r' for new random seed
 // press 's' to save
 
-// let seed = 367;
+let seed = 367;
 let doExport = false;
 
 function setup() {
@@ -10,7 +10,7 @@ function setup() {
 
 function keyPressed() {
   if (key == "r") {
-    // seed = floor(random(13001));
+    seed = floor(random(13001));
   }
   if (key == "s") {
     doExport = true;
@@ -30,8 +30,8 @@ function drawShape(x, y, inc) {
 
 function draw() {
 
-  // noiseSeed(seed);
-  // randomSeed(seed);
+  noiseSeed(seed);
+  randomSeed(seed);
   background(220);
   noFill();
 
