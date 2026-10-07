@@ -19,7 +19,13 @@ function keyPressed() {
 }
 
 function drawLine(y) {
-  line(20, y, width - 20, y);
+  beginShape();
+
+  for (let x = 20; x <= width - 20; x += 2) {
+    vertex(x, y);
+  }
+
+  endShape();
 }
 
 function draw() {
