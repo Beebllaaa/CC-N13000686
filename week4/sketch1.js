@@ -59,7 +59,7 @@ function draw() {
     beginRecordSvg("myOutput.svg");
   }
   let step = 46; // space in grid
-  let inc = .0002; // amt to incrment noise val
+  let inc = .0005; // amt to incrment noise val
   
   rectMode(CENTER);
   // increment noiseVal every time through the loop
