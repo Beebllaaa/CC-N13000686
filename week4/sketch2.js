@@ -22,7 +22,10 @@ function drawLine(y) {
   beginShape();
 
   for (let x = 20; x <= width - 20; x += 2) {
-    vertex(x, y);
+    let n = noise(x * 0.01);
+    let currentY = y + (n - 0.5) * 40;
+
+    vertex(x, currentY);
   }
 
   endShape();
