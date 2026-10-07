@@ -38,6 +38,8 @@ function draw() {
   background(255);
   stroke(20, 100, 255);
 
-  drawLine(30);
+  for (let y = 30; y <= height - 30; y += 10) {
+  drawLine(y);
+  }
 }
 
