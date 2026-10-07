@@ -32,6 +32,8 @@ function drawLine(y) {
 }
 
 function draw() {
+  noiseSeed(seed);
+  
   background(255);
   stroke(20, 100, 255);
 
