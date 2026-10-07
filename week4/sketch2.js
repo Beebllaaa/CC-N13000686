@@ -22,7 +22,8 @@ function drawLine(y) {
   beginShape();
 
   for (let x = 20; x <= width - 20; x += 2) {
-    let n = noise(x * 0.01);
+    //diffrent noise values for x and y to get more variation in the lines
+    let n = noise(x * 0.01, y * 0.02);
     let amount = (x - 20) / (width - 40);
     let currentY = y + (n - 0.5) * 40 * amount;
 
