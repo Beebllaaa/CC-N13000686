@@ -23,7 +23,8 @@ function drawLine(y) {
 
   for (let x = 20; x <= width - 20; x += 2) {
     let n = noise(x * 0.01);
-    let currentY = y + (n - 0.5) * 40;
+    let amount = (x - 20) / (width - 40);
+    let currentY = y + (n - 0.5) * 40 * amount;
 
     vertex(x, currentY);
   }
