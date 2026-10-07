@@ -25,7 +25,9 @@ function drawLine(y) {
     //diffrent noise values for x and y to get more variation in the lines
     let n = noise(x * 0.01, y * 0.02);
     let amount = (x - 20) / (width - 40);
-    let currentY = y + (n - 0.5) * 40 * amount;
+    //The intensity of variation increases slowly at first and rises significantly near the right end.
+    let intensity = amount * amount * amount;
+    let currentY = y + (n - 0.5) * 40 * intensity;
 
     vertex(x, currentY);
   }
