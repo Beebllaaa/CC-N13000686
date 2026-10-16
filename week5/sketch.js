@@ -30,9 +30,9 @@ for (let angle = 0; angle < 360; angle += 3) {
   let xoff = cos(angle) + 1;
   let yoff = sin(angle) + 1;
 
-  let noiseVal = noise(xoff,yoff,s  );
+  let noiseVal = noise(xoff,yoff,s);
 
-  let radius = 100 + map(noiseVal, 0, 1, -40, 40);
+  let radius = 100 + i*30 + map(noiseVal, 0, 1, -40, 40)+pulse;
 
   let x = radius * cos(angle);
   let y = radius * sin(angle);
