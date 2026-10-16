@@ -25,14 +25,15 @@ function draw() {
   for (let i = 0; i < layers; i++) {
 
 beginShape();
+let baseRadius = 25 + i * 30 + pulse * (i * 0.1);
 
 for (let angle = 0; angle < 360; angle += 3) {
   let xoff = cos(angle) + 1;
   let yoff = sin(angle) + 1;
 
-  let noiseVal = noise(xoff,yoff,s);
+  let noiseVal = noise(xoff,yoff,s*0.1);
 
-  let radius = 100 + i*30 + map(noiseVal, 0, 1, -40, 40)+pulse;
+  let radius = baseRadius + map(noiseVal, 0, 1, -40, 40);
 
   let x = radius * cos(angle);
   let y = radius * sin(angle);
