@@ -23,8 +23,19 @@ function draw() {
   strokeWeight(5);
 
   for (let i = 0; i < layers; i++) {
-    let diameter = 50 + i * 60+ pulse;
-    circle(0, 0, diameter);
+
+beginShape();
+
+for (let angle = 0; angle < 360; angle += 3) {
+  let radius = 100;
+
+  let x = radius * cos(angle);
+  let y = radius * sin(angle);
+
+  vertex(x, y);
+}
+
+endShape(CLOSE);
   }
 
   pop();
