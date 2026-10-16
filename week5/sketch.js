@@ -58,19 +58,10 @@ function draw() {
 
   //Make the circles breathe with seconds
   let s = second();
-  
-  let ssmmhh = 'second: ' + s + '\n' +
-               'minute: ' + m + '\n' +
-               'hour: ' + h;
-    // to the console
-    console.log(ssmmhh);
 
-// print ss/mm/hh to the screen
-    fill(255);
-    noStroke();
-    textSize(24);
-    text(ssmmhh, 10, 20);
-
+    document.getElementById("secondValue").textContent = s;
+    document.getElementById("minuteValue").textContent = m;
+    
   push();
   translate(width / 2, height / 2);
   blendMode(SCREEN);
