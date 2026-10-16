@@ -96,7 +96,7 @@ for (let angle = 0; angle < 360; angle += 3) {
 
   let noiseVal = noise(xoff + i*0.2, yoff + i*0.2, s*0.2);
 
-  let radius = baseRadius + map(noiseVal, 0, 1, -i * 0.5, i * 0.5);
+  let radius = baseRadius + map(noiseVal, 0, 1, -i , i );
 
   let x = radius * cos(angle);
   let y = radius * sin(angle);
