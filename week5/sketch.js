@@ -1,12 +1,12 @@
 
 function setup() {
-  createCanvas(1200, 800);
+  createCanvas(1200, 1200);
   angleMode(DEGREES);
 }
 
 function draw() {
 //change background color based on hour of the day
-  let h = hour();
+  let h = floor(hour() + minute() / 60 + second() / 3600);
     if (h < 5) {
   background(16, 31, 80); // Night
 
@@ -51,8 +51,6 @@ function draw() {
 
   //Make the circles breathe with seconds
   let s = second();
-  let pulse = sin(s * 6) * 10;
-
   
   let ssmmhh = 'second: ' + s + ', minute: ' + m + ', hour: ' + h;
     // to the console
@@ -63,9 +61,10 @@ function draw() {
     noStroke();
     textSize(24);
     text(ssmmhh, 10, 20);
+
   push();
   translate(width / 2, height / 2);
-
+  blendMode(SCREEN);
   noFill();
   stroke(150, 180, 255);
   strokeWeight(2);
@@ -74,15 +73,30 @@ function draw() {
 
 beginShape();
 
-let baseRadius = 5 + i * 10 + pulse * (i * 0.1);
+let baseRadius = 5 + i * 9 + i * 0.1;
 
 for (let angle = 0; angle < 360; angle += 3) {
+//change stroke color based every 10 layers(minutes)
+    if (i < 10) {
+  stroke(150, 180, 255); // Blue
+} else if (i < 20) {
+  stroke(180, 150, 255); // Purple
+} else if (i < 30) {
+  stroke(255, 150, 200); // Pink
+} else if (i < 40) {
+  stroke(255, 190, 130); // Orange
+} else if (i < 50) {
+  stroke(255, 230, 150); // Yellow
+} else {
+  stroke(150, 230, 200); // Green
+}
+
   let xoff = cos(angle) + 1;
   let yoff = sin(angle) + 1;
 
   let noiseVal = noise(xoff + i*0.2, yoff + i*0.2, s*0.2);
 
-  let radius = baseRadius + map(noiseVal, 0, 1, -i * 2, i * 2);
+  let radius = baseRadius + map(noiseVal, 0, 1, -i * 0.5, i * 0.5);
 
   let x = radius * cos(angle);
   let y = radius * sin(angle);
