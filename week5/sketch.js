@@ -1,12 +1,12 @@
 
 function setup() {
-  createCanvas(1600, 800);
+  createCanvas(1200, 800);
   angleMode(DEGREES);
 }
 
 function draw() {
-  background(20);
-
+    background(20);
+    
   //Connect circle number to minutes
   let m = minute();
   let layers = map(m, 0, 59, 0, 6);   
@@ -15,6 +15,17 @@ function draw() {
   let s = second();
   let pulse = sin(s * 6) * 10;
 
+  let h = hour();
+  
+  let ssmmhh = 'second: ' + s + ', minute: ' + m + ', hour: ' + h;
+    // to the console
+    console.log(ssmmhh);
+
+// print mm/dd/yyyy to the screen
+    fill(255);
+    noStroke();
+    textSize(24);
+    text(ssmmhh, 10, 20);
   push();
   translate(width / 2, height / 2);
 
