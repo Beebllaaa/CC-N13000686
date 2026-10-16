@@ -1,13 +1,20 @@
 
 function setup() {
-  createCanvas(1200, 1200);
+  createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
 }
 
 function draw() {
-//change background color based on hour of the day
+  // Get time from HTML slider
   let h = Number(document.getElementById("timeSlider").value);
+
+  // Update displayed time
+  document.getElementById("timeValue").textContent =
+    String(floor(h)).padStart(2, "0") + ":" +
+    String(floor((h % 1) * 60)).padStart(2, "0");
     if (h < 5) {
+    
+  //change background color based on hour of the day
   background(16, 31, 80); // Night
 
 } else if (h < 8) {
