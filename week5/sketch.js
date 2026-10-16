@@ -6,7 +6,7 @@ function setup() {
 
 function draw() {
 //change background color based on hour of the day
-  let h = floor(hour() + minute() / 60 + second() / 3600);
+  let h = Number(document.getElementById("timeSlider").value);
     if (h < 5) {
   background(16, 31, 80); // Night
 
