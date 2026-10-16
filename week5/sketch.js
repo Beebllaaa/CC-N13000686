@@ -59,7 +59,9 @@ function draw() {
   //Make the circles breathe with seconds
   let s = second();
   
-  let ssmmhh = 'second: ' + s + ', minute: ' + m + ', hour: ' + h;
+  let ssmmhh = 'second: ' + s + '\n' +
+               'minute: ' + m + '\n' +
+               'hour: ' + h;
     // to the console
     console.log(ssmmhh);
 
