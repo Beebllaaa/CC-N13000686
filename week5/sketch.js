@@ -12,7 +12,10 @@ function draw() {
   stroke(150, 180, 255);
   strokeWeight(5);
 
-  circle(0, 0, 100);
+  for (let i = 0; i < 6; i++) {
+    let diameter = 50 + i * 60;
+    circle(0, 0, diameter);
+  }
 
   pop();
 }
