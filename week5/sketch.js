@@ -5,9 +5,14 @@ function setup() {
 function draw() {
   background(20);
 
+  push();
+  translate(width / 2, height / 2);
+
   noFill();
   stroke(150, 180, 255);
   strokeWeight(5);
 
-  circle(width / 2, height / 2, 100);
+  circle(0, 0, 100);
+
+  pop();
 }
