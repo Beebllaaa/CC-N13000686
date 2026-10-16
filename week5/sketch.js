@@ -5,8 +5,46 @@ function setup() {
 }
 
 function draw() {
-    background(20);
-    
+//change background color based on hour of the day
+  let h = hour();
+    if (h < 5) {
+  background(16, 31, 80); // Night
+
+} else if (h < 8) {
+  background(lerpColor(
+    color(16, 31, 80),
+    color(255, 150, 120),
+    map(h, 5, 8, 0, 1)
+  )); // Sunrise
+
+} else if (h < 12) {
+  background(lerpColor(
+    color(255, 150, 120),
+    color(120, 190, 255),
+    map(h, 8, 12, 0, 1)
+  )); // Morning to noon
+
+} else if (h < 17) {
+  background(120, 190, 255); // Daytime
+
+} else if (h < 19) {
+  background(lerpColor(
+    color(120, 190, 255),
+    color(255, 110, 100),
+    map(h, 17, 19, 0, 1)
+  )); // Sunset
+
+} else if (h < 21) {
+  background(lerpColor(
+    color(255, 110, 100),
+    color(16, 31, 80),
+    map(h, 19, 21, 0, 1)
+  )); // Evening to night
+
+} else {
+  background(16, 31, 80); // Night
+}
+
   //Connect circle number to minutes
   let m = minute();
   let layers = map(m, 0, 59, 0, 6);   
@@ -15,7 +53,6 @@ function draw() {
   let s = second();
   let pulse = sin(s * 6) * 10;
 
-  let h = hour();
   
   let ssmmhh = 'second: ' + s + ', minute: ' + m + ', hour: ' + h;
     // to the console
