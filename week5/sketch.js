@@ -47,7 +47,7 @@ function draw() {
 
   //Connect circle number to minutes
   let m = minute();
-  let layers = map(m, 0, 59, 0, 6);   
+  let layers = m;   
 
   //Make the circles breathe with seconds
   let s = second();
@@ -58,7 +58,7 @@ function draw() {
     // to the console
     console.log(ssmmhh);
 
-// print mm/dd/yyyy to the screen
+// print ss/mm/hh to the screen
     fill(255);
     noStroke();
     textSize(24);
@@ -68,21 +68,21 @@ function draw() {
 
   noFill();
   stroke(150, 180, 255);
-  strokeWeight(5);
+  strokeWeight(2);
 
   for (let i = 0; i < layers; i++) {
 
 beginShape();
 
-let baseRadius = 25 + i * 30 + pulse * (i * 0.1);
+let baseRadius = 5 + i * 10 + pulse * (i * 0.1);
 
 for (let angle = 0; angle < 360; angle += 3) {
   let xoff = cos(angle) + 1;
   let yoff = sin(angle) + 1;
 
-  let noiseVal = noise(xoff + i*0.2, yoff + i*0.2, s*0.1);
+  let noiseVal = noise(xoff + i*0.2, yoff + i*0.2, s*0.2);
 
-  let radius = baseRadius + map(noiseVal, 0, 1, -40, 40);
+  let radius = baseRadius + map(noiseVal, 0, 1, -i * 2, i * 2);
 
   let x = radius * cos(angle);
   let y = radius * sin(angle);
