@@ -88,3 +88,23 @@ header p {
 .box:focus-visible img {
   opacity: 1;
 }
+
+/* 返回首页的链接 */
+.back {
+  display: inline-block;
+  margin-top: 40px;
+
+  color: #222222;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.back:hover {
+  text-decoration: underline;
+}
+
+/* 只有包含图片的方块，悬停时才隐藏文字 */
+.box:not(:has(img)):hover span,
+.box:not(:has(img)):focus-visible span {
+  opacity: 1;
+}
