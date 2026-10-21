@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 40px;
+  background: #f7f6f2;
+  color: #222222;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: normal;
+}
+
+header p {
+  margin: 8px 0 0;
+  font-size: 16px;
+}
