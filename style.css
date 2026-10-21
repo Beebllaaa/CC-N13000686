@@ -40,3 +40,51 @@ header p {
   color: #222222;
   text-decoration: none;
 }
+
+.box {
+  width: 120px;
+  height: 120px;
+  background: #ddd9d0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #222222;
+  text-decoration: none;
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* The text is displayed by default */
+.box span {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+/* The image covers the entire block and is hidden by default */
+.box img {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Hide text on mouse hover selection */
+.box:hover span,
+.box:focus-visible span {
+  opacity: 0;
+}
+
+/* Show image on mouse hover selection */
+.box:hover img,
+.box:focus-visible img {
+  opacity: 1;
+}
