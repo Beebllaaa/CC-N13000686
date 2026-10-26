@@ -55,6 +55,10 @@ function draw() {
 
 function visual1_1(g) {
     g.background(0);
+    g.noFill(); 
+    g.stroke(255); 
+    g.strokeWeight(2); 
+    g.rect(100, 100, 200, 200);
 }
 
 function visual1_2(g) {
