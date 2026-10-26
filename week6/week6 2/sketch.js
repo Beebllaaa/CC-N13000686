@@ -1,4 +1,5 @@
 let pMapper;
+let offset = 0;
 
 // Box 1
 let quad1_1;
@@ -55,10 +56,18 @@ function draw() {
 
 function visual1_1(g) {
     g.background(0);
+    let size = 200 - offset;
+    if (size < 2) {
+        size = 2;
+    }
     g.noFill(); 
     g.stroke(255); 
     g.strokeWeight(2); 
-    g.rect(100, 100, 200, 200);
+    g.rect(100 + offset/2, 100 + offset/2, size, size);
+    offset += 1;
+    if (offset > 100) {
+        offset = 0;
+    }
 }
 
 function visual1_2(g) {
