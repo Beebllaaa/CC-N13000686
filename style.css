@@ -103,6 +103,7 @@ header p {
   text-decoration: underline;
 }
 
+
 .box:not(:has(img)):hover span,
 .box:not(:has(img)):focus-visible span {
   opacity: 1;
