@@ -1,42 +1,115 @@
+let pMapper;
 
-let numDots = 41;
-let dotSize = 8;
+// Box 1
+let quad1_1;
+let quad1_2;
 
-let speed = 0.02;
-let delay = 0.045;
+// Box 2
+let quad2_1;
+let quad2_2;
+
+// Box 3
+let quad3_1;
+let quad3_2;
+
 
 function setup() {
-  createCanvas(600, 600);
-  background(0);
+    createCanvas(windowWidth, windowHeight, WEBGL);
+
+    pMapper = createProjectionMapper(this);
+
+    // Box 1
+    quad1_1 = pMapper.createQuadMap(400, 400);
+    quad1_2 = pMapper.createQuadMap(400, 400);
+
+    // Box 2
+    quad2_1 = pMapper.createQuadMap(400, 400);
+    quad2_2 = pMapper.createQuadMap(400, 400);
+
+    // Box 3
+    quad3_1 = pMapper.createQuadMap(400, 400);
+    quad3_2 = pMapper.createQuadMap(400, 400);
+
+    pMapper.load("map.json");
 }
 
+
 function draw() {
-  // Fading trails
-  background(0, 15);
+    background(0);
 
-  noStroke();
-  fill(255);
+    // Box 1
+    quad1_1.displaySketch(visual1_1);
+    quad1_2.displaySketch(visual1_2);
 
-  for (let i = 0; i < numDots; i++) {
+    // Box 2
+    quad2_1.displaySketch(visual2_1);
+    quad2_2.displaySketch(visual2_2);
 
-    let x = map(
-      i, 0, numDots - 1,
-      dotSize / 2, width - dotSize / 2
-    );
+    // Box 3
+    quad3_1.displaySketch(visual3_1);
+    quad3_2.displaySketch(visual3_2);
+}
 
-    // Each dot follows the same motion,
-    // but starts at a different phase
-    let phase = frameCount * speed - i * delay;
 
-    // Smooth movement between top and bottom
-    let progress = (sin(phase - HALF_PI) + 1) / 2;
+// BOX 1 VISUALS
 
-    let y = map(
-      progress, 0, 1,
-      height - dotSize / 2,
-      dotSize / 2
-    );
+function visual1_1(g) {
+    g.background(0);
+}
 
-    circle(x, y, dotSize);
-  }
+function visual1_2(g) {
+    g.background(0);
+}
+
+
+// BOX 2 VISUALS
+
+function visual2_1(g) {
+    g.background(0);
+}
+
+function visual2_2(g) {
+    g.background(0);
+}
+
+
+// BOX 3 VISUALS
+
+function visual3_1(g) {
+    g.background(0);
+}
+
+function visual3_2(g) {
+    g.background(0);
+}
+
+
+// KEYBOARD CONTROLS
+
+function keyPressed() {
+    switch (key) {
+        case "c":
+            pMapper.toggleCalibration();
+            break;
+
+        case "f":
+            let fs = fullscreen();
+            fullscreen(!fs);
+            break;
+
+        case "l":
+            pMapper.load("maps/map.json");
+            break;
+
+        case "s":
+            pMapper.save("map.json");
+            break;
+    }
+}
+
+
+// WINDOW RESIZE
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
 }
