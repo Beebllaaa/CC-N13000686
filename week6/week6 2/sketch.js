@@ -62,10 +62,12 @@ function visual1_1(g) {
     g.strokeWeight(2);
     g.rectMode(CENTER);
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 11; i++) {
         let size = 40 + i * 40 - offset;
 
-        g.rect(200, 200, size, size);
+        if (size > 0) {
+           g.rect(200, 200, size, size);
+        }
     }
 
     offset += 1;
@@ -76,29 +78,124 @@ function visual1_1(g) {
 }
 
 function visual1_2(g) {
-    g.background(0);
+     g.background(0);
+
+    g.noFill();
+    g.stroke(255);
+    g.strokeWeight(2);
+    g.rectMode(CENTER);
+
+    for (let i = 0; i < 11; i++) {
+        let size = 40 + i * 40 - offset;
+
+        if (size > 0) {
+           g.rect(200, 200, size, size);
+        }
+    }
+
+    offset += 1;
+
+    if (offset >= 40) {
+        offset = 0;
+    }
 }
 
 
 // BOX 2 VISUALS
 
 function visual2_1(g) {
-    g.background(0);
+     g.background(0);
+
+    g.noFill();
+    g.stroke(255);
+    g.strokeWeight(2);
+    g.rectMode(CENTER);
+
+    for (let i = 0; i < 11; i++) {
+        let size = 40 + i * 40 - offset;
+
+        if (size > 0) {
+           g.rect(200, 200, size, size);
+        }
+    }
+
+    offset += 1;
+
+    if (offset >= 40) {
+        offset = 0;
+    }
 }
 
 function visual2_2(g) {
-    g.background(0);
+     g.background(0);
+
+    g.noFill();
+    g.stroke(255);
+    g.strokeWeight(2);
+    g.rectMode(CENTER);
+
+    for (let i = 0; i < 11; i++) {
+        let size = 40 + i * 40 - offset;
+
+        if (size > 0) {
+           g.rect(200, 200, size, size);
+        }
+    }
+
+    offset += 1;
+
+    if (offset >= 40) {
+        offset = 0;
+    }
 }
 
 
 // BOX 3 VISUALS
 
 function visual3_1(g) {
-    g.background(0);
+     g.background(0);
+
+    g.noFill();
+    g.stroke(255);
+    g.strokeWeight(2);
+    g.rectMode(CENTER);
+
+    for (let i = 0; i < 11; i++) {
+        let size = 40 + i * 40 - offset;
+
+        if (size > 0) {
+           g.rect(200, 200, size, size);
+        }
+    }
+
+    offset += 1;
+
+    if (offset >= 40) {
+        offset = 0;
+    }
 }
 
 function visual3_2(g) {
-    g.background(0);
+     g.background(0);
+
+    g.noFill();
+    g.stroke(255);
+    g.strokeWeight(2);
+    g.rectMode(CENTER);
+
+    for (let i = 0; i < 11; i++) {
+        let size = 40 + i * 40 - offset;
+
+        if (size > 0) {
+           g.rect(200, 200, size, size);
+        }
+    }
+
+    offset += 1;
+
+    if (offset >= 40) {
+        offset = 0;
+    }
 }
 
 
