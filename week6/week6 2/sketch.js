@@ -1,9 +1,11 @@
+
 let pMapper;
+
 let offset = 0;
+
 let centerX = 200;
 let centerY = 200;
 let editCenter = false;
-let dragging = false;
 
 // Box 1
 let quad1_1;
@@ -17,6 +19,8 @@ let quad2_2;
 let quad3_1;
 let quad3_2;
 
+
+// SETUP
 
 function setup() {
     createCanvas(windowWidth, windowHeight, WEBGL);
@@ -36,60 +40,71 @@ function setup() {
     quad3_2 = pMapper.createQuadMap(400, 400);
 
     pMapper.load("map.json");
-    
 }
 
+
+// DRAW
 
 function draw() {
     background(0);
 
     // Box 1
-    quad1_1.displaySketch(visual);
-    quad1_2.displaySketch(visual);
+    quad1_1.displaySketch(g => visual(g, false));
+    quad1_2.displaySketch(g => visual(g, true));
 
     // Box 2
-    quad2_1.displaySketch(visual);
-    quad2_2.displaySketch(visual);
+    quad2_1.displaySketch(g => visual(g, false));
+    quad2_2.displaySketch(g => visual(g, true));
 
     // Box 3
-    quad3_1.displaySketch(visual);
-    quad3_2.displaySketch(visual);
+    quad3_1.displaySketch(g => visual(g, false));
+    quad3_2.displaySketch(g => visual(g, true));
 
+    // Tunnel animation
     offset += 1;
 
     if (offset >= 40) {
         offset = 0;
     }
-    
 }
 
 
-// BOX 1 VISUALS
+// VISUALS
 
-function visual(g) {
+function visual(g, reverseX) {
     g.background(0);
 
     g.noFill();
     g.rectMode(CENTER);
 
     for (let i = 0; i < 11; i++) {
+
         let size = 40 + i * 40 - offset;
 
         if (size > 0 && size <= 400) {
 
+            // Fade out near outer edge
             let alpha = 255;
 
             if (size > 360) {
                 alpha = map(size, 360, 400, 255, 0);
             }
 
-            let x = map(size, 400, 0, 200, centerX);
+            // Reverse X for even-numbered quads
+            let targetX = centerX;
+
+            if (reverseX) {
+                targetX = 400 - centerX;
+            }
+
+            // Tunnel vanishing point
+            let x = map(size, 400, 0, 200, targetX);
             let y = map(size, 400, 0, 200, centerY);
 
-            // Color gradient: blue inside, pink-purple outside
-            let t = constrain(map(size, 0, 400, 0, 1), 0, 1);
+            // Color gradient: blue inside, pink outside
+            let t = map(size, 0, 400, 0, 1);
 
-            let innerColor = color(100, 140, 255);
+            let innerColor = color(40, 140, 255);
             let outerColor = color(255, 80, 200);
 
             let c = lerpColor(innerColor, outerColor, t);
@@ -121,6 +136,7 @@ function visual(g) {
 
 function keyPressed() {
     switch (key) {
+
         case "c":
             pMapper.toggleCalibration();
             break;
@@ -152,12 +168,24 @@ function keyPressed() {
     }
 }
 
+
+// MOUSE CONTROL
+
 function mouseDragged() {
     if (editCenter) {
-        centerX = constrain(map(mouseX, 0, width, 0, 400), 0, 400);
-        centerY = constrain(map(mouseY, 0, height, 0, 400), 0, 400);
+
+        centerX = constrain(
+            map(mouseX, 0, width, 0, 400),
+            0, 400
+        );
+
+        centerY = constrain(
+            map(mouseY, 0, height, 0, 400),
+            0, 400
+        );
     }
 }
+
 
 // WINDOW RESIZE
 
