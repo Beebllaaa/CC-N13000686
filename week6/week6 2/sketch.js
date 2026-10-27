@@ -119,6 +119,13 @@ function keyPressed() {
         case "p":
         case "P":
             editCenter = !editCenter;
+
+            if (editCenter) {
+                document.body.style.cursor = "none";
+            } else {
+                document.body.style.cursor = "default";
+            }
+
             break;
     }
 }
