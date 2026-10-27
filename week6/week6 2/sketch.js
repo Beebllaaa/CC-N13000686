@@ -56,17 +56,15 @@ function draw() {
 
 function visual1_1(g) {
     g.background(0);
-    let size = 200 - offset;
-    if (size < 2) {
-        size = 2;
-    }
     g.noFill(); 
     g.stroke(255); 
     g.strokeWeight(2); 
-    g.rect(100 + offset/2, 100 + offset/2, size, size);
-    offset += 1;
-    if (offset > 100) {
-        offset = 0;
+    g.rectMode(CENTER);
+
+    for (let i = 0; i < 5; i++) {
+        let size = 40 + i * 40;
+
+        g.rect(200, 200, size, size);
     }
 }
 
