@@ -62,9 +62,14 @@ function visual1_1(g) {
     g.rectMode(CENTER);
 
     for (let i = 0; i < 5; i++) {
-        let size = 40 + i * 40;
+        let size = 40 + i * 40 + offset;
 
         g.rect(200, 200, size, size);
+    }
+        offset += 1;
+
+    if (offset >= 40) {
+        offset = 0;
     }
 }
 
