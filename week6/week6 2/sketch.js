@@ -2,6 +2,8 @@ let pMapper;
 let offset = 0;
 let centerX = 200;
 let centerY = 200;
+let editCenter = false;
+let dragging = false;
 
 // Box 1
 let quad1_1;
@@ -34,6 +36,7 @@ function setup() {
     quad3_2 = pMapper.createQuadMap(400, 400);
 
     pMapper.load("map.json");
+    
 }
 
 
@@ -57,6 +60,7 @@ function draw() {
     if (offset >= 40) {
         offset = 0;
     }
+    
 }
 
 
@@ -105,15 +109,26 @@ function keyPressed() {
             break;
 
         case "l":
-            pMapper.load("maps/map.json");
+            pMapper.load("map.json");
             break;
 
         case "s":
             pMapper.save("map.json");
             break;
+
+        case "p":
+        case "P":
+            editCenter = !editCenter;
+            break;
     }
 }
 
+function mouseDragged() {
+    if (editCenter) {
+        centerX = constrain(map(mouseX, 0, width, 0, 400), 0, 400);
+        centerY = constrain(map(mouseY, 0, height, 0, 400), 0, 400);
+    }
+}
 
 // WINDOW RESIZE
 
