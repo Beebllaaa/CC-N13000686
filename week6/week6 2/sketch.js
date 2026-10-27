@@ -39,22 +39,22 @@ function draw() {
     background(0);
 
     // Box 1
-    quad1_1.displaySketch(visual1_1);
-    quad1_2.displaySketch(visual1_2);
+    quad1_1.displaySketch(visual);
+    quad1_2.displaySketch(visual);
 
     // Box 2
-    quad2_1.displaySketch(visual2_1);
-    quad2_2.displaySketch(visual2_2);
+    quad2_1.displaySketch(visual);
+    quad2_2.displaySketch(visual);
 
     // Box 3
-    quad3_1.displaySketch(visual3_1);
-    quad3_2.displaySketch(visual3_2);
+    quad3_1.displaySketch(visual);
+    quad3_2.displaySketch(visual);
 }
 
 
 // BOX 1 VISUALS
 
-function visual1_1(g) {
+function visual(g) {
     g.background(0);
 
     g.noFill();
@@ -84,99 +84,8 @@ function visual1_1(g) {
     }
 }
 
-function visual1_2(g) {
-     g.background(0);
-
-    g.noFill();
-    g.stroke(255);
-    g.strokeWeight(2);
-    g.rectMode(CENTER);
-
-    for (let i = 0; i < 11; i++) {
-        let size = 40 + i * 40 - offset;
-
-        if (size > 0) {
-           g.rect(200, 200, size, size);
-        }
-    }
-
-}
 
 
-// BOX 2 VISUALS
-
-function visual2_1(g) {
-     g.background(0);
-
-    g.noFill();
-    g.stroke(255);
-    g.strokeWeight(2);
-    g.rectMode(CENTER);
-
-    for (let i = 0; i < 11; i++) {
-        let size = 40 + i * 40 - offset;
-
-        if (size > 0) {
-           g.rect(200, 200, size, size);
-        }
-    }
-
-}
-
-function visual2_2(g) {
-     g.background(0);
-
-    g.noFill();
-    g.stroke(255);
-    g.strokeWeight(2);
-    g.rectMode(CENTER);
-
-    for (let i = 0; i < 11; i++) {
-        let size = 40 + i * 40 - offset;
-
-        if (size > 0) {
-           g.rect(200, 200, size, size);
-        }
-    }
-}
-
-
-// BOX 3 VISUALS
-
-function visual3_1(g) {
-     g.background(0);
-
-    g.noFill();
-    g.stroke(255);
-    g.strokeWeight(2);
-    g.rectMode(CENTER);
-
-    for (let i = 0; i < 11; i++) {
-        let size = 40 + i * 40 - offset;
-
-        if (size > 0) {
-           g.rect(200, 200, size, size);
-        }
-    }
-}
-
-function visual3_2(g) {
-     g.background(0);
-
-    g.noFill();
-    g.stroke(255);
-    g.strokeWeight(2);
-    g.rectMode(CENTER);
-
-    for (let i = 0; i < 11; i++) {
-        let size = 40 + i * 40 - offset;
-
-        if (size > 0) {
-           g.rect(200, 200, size, size);
-        }
-    }
-
-}
 
 
 // KEYBOARD CONTROLS
