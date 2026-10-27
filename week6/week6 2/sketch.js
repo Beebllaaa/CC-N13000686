@@ -70,7 +70,6 @@ function visual(g) {
     g.background(0);
 
     g.noFill();
-    g.strokeWeight(2);
     g.rectMode(CENTER);
 
     for (let i = 0; i < 11; i++) {
@@ -84,14 +83,25 @@ function visual(g) {
                 alpha = map(size, 360, 400, 255, 0);
             }
 
-            g.stroke(255, alpha);
+            let x = map(size, 400, 0, 200, centerX);
+            let y = map(size, 400, 0, 200, centerY);
 
-            let x = map(size, 400, 0, 200, centerX); 
-            let y = map(size, 400, 0, 200, centerY); 
+            // Outer blue glow
+            g.stroke(0, 80, 255, alpha * 0.2);
+            g.strokeWeight(30);
+            g.rect(x, y, size, size);
+
+            // Middle blue glow
+            g.stroke(0, 140, 255, alpha * 0.5);
+            g.strokeWeight(5);
+            g.rect(x, y, size, size);
+
+            // Bright blue line
+            g.stroke(80, 200, 255, alpha);
+            g.strokeWeight(2);
             g.rect(x, y, size, size);
         }
     }
-
 }
 
 
