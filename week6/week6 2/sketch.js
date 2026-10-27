@@ -86,18 +86,30 @@ function visual(g) {
             let x = map(size, 400, 0, 200, centerX);
             let y = map(size, 400, 0, 200, centerY);
 
-            // Outer blue glow
-            g.stroke(0, 80, 255, alpha * 0.2);
-            g.strokeWeight(30);
+            // Color gradient: blue inside, pink-purple outside
+            let t = constrain(map(size, 0, 400, 0, 1), 0, 1);
+
+            let innerColor = color(100, 140, 255);
+            let outerColor = color(255, 80, 200);
+
+            let c = lerpColor(innerColor, outerColor, t);
+
+            let r = red(c);
+            let gr = green(c);
+            let b = blue(c);
+
+            // Outer glow
+            g.stroke(r, gr, b, alpha * 0.12);
+            g.strokeWeight(12);
             g.rect(x, y, size, size);
 
-            // Middle blue glow
-            g.stroke(0, 140, 255, alpha * 0.5);
-            g.strokeWeight(5);
+            // Middle glow
+            g.stroke(r, gr, b, alpha * 0.3);
+            g.strokeWeight(6);
             g.rect(x, y, size, size);
 
-            // Bright blue line
-            g.stroke(80, 200, 255, alpha);
+            // Bright line
+            g.stroke(r, gr, b, alpha);
             g.strokeWeight(2);
             g.rect(x, y, size, size);
         }
