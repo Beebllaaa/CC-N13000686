@@ -1,5 +1,7 @@
 let pMapper;
 let offset = 0;
+let centerX = 200;
+let centerY = 200;
 
 // Box 1
 let quad1_1;
@@ -49,7 +51,8 @@ function draw() {
     // Box 3
     quad3_1.displaySketch(visual);
     quad3_2.displaySketch(visual);
-      offset += 1;
+
+    offset += 1;
 
     if (offset >= 40) {
         offset = 0;
@@ -78,7 +81,10 @@ function visual(g) {
             }
 
             g.stroke(255, alpha);
-            g.rect(200, 200, size, size);
+
+            let x = map(size, 400, 0, 200, centerX); 
+            let y = map(size, 400, 0, 200, centerY); 
+            g.rect(x, y, size, size);
         }
     }
 
