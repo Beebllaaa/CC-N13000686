@@ -49,6 +49,11 @@ function draw() {
     // Box 3
     quad3_1.displaySketch(visual);
     quad3_2.displaySketch(visual);
+      offset += 1;
+
+    if (offset >= 40) {
+        offset = 0;
+    }
 }
 
 
@@ -77,15 +82,7 @@ function visual(g) {
         }
     }
 
-    offset += 1;
-
-    if (offset >= 40) {
-        offset = 0;
-    }
 }
-
-
-
 
 
 // KEYBOARD CONTROLS
