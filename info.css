@@ -1,0 +1,117 @@
+/* 右侧说明面板 */
+.info-panel {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  width: min(360px, calc(100vw - 44px));
+  height: 100vh;
+
+/* 中间是较透明的白色 */
+background: rgba(255, 255, 255, 0.18);
+
+/* 背后的画面模糊 */
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+
+/* 白色线框 */
+border: 1px solid rgba(255, 255, 255, 0.9);
+
+border-radius: 24px 0 0 24px;
+
+/* 白色从边缘向内部渐渐变淡 */
+box-shadow:
+  inset 0 0 12px rgba(255, 255, 255, 0.65),
+  inset 0 0 40px rgba(255, 255, 255, 0.3);
+
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  text-align: left;
+
+  transform: translateX(100%);
+  transition: transform 0.4s;
+  z-index: 10000;
+}
+
+/* 露在屏幕边缘的箭头 */
+.info-arrow {
+  position: absolute;
+  top: 50%;
+  left: -68px;
+  transform: translateY(-50%);
+
+  width: 56px;
+  height: 64px;
+  padding: 0;
+  border: none;
+
+  background: transparent;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-arrow svg {
+  width: 48px;
+  height: 48px;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+
+  fill: none;
+  stroke: white;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* 可以滚动的文字区域 */
+.info-content {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 40px 28px;
+  overflow-y: auto;
+}
+
+.info-content h2 {
+  margin: 0 0 32px;
+  font-size: 24px;
+  font-weight: normal;
+}
+
+.info-content h3 {
+  margin: 28px 0 12px;
+  font-size: 16px;
+}
+
+.info-content p {
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.8;
+  padding-left: 16px;
+}
+
+/* 鼠标悬停或焦点进入面板时展开 */
+.info-panel:hover,
+.info-panel:focus-within {
+  transform: translateX(0);
+}
+
+/* 透明区域：连接箭头和面板 */
+.info-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -12px;
+  width: 12px;
+  height: 100%;
+  background: transparent;
+}
+
+.info-video {
+  display: block;
+  width: 100%;
+  margin: 16px 0;
+  border-radius: 12px;
+}
