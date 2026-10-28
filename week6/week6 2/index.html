@@ -5,11 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>03_5_real_simple_mapping</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../../info.css">
     <script src="https://cdn.jsdelivr.net/npm/p5@2.3.4/lib/p5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jdeboi/p5.mapper@main/dist/p5.mapper.min.js"></script>
 
 </head>
 <body>
+    <div id="centerControl"></div>
     <script src="sketch.js"></script>
+    <aside class="info-panel">
+  <button
+    type="button"
+    class="info-arrow"
+    aria-label="work info"
+  >
+    <svg viewBox="0 0 48 48" aria-hidden="true">
+      <path d="M30 10 L16 24 L30 38" />
+    </svg>
+  </button>
+
+  <div class="info-content">
+    <h2>Week 6 · Practice 2</h2>
+
+    <h3>About this work</h3>
+    <p>
+<strong>C</strong> — Toggle projection calibration<br>
+
+<strong>F</strong> — Fullscreen<br>
+
+<strong>S</strong> — Save projection mapping<br>
+
+<strong>L</strong> — Load saved mapping<br>
+
+<strong>P</strong> — Toggle mouse control mode<br>
+
+<strong>Mouse drag</strong> — Change the vanishing points of the tunnels when P mode is active<br>
+    </p>
+
+    <h3>Process</h3>
+    <p>
+    My initial idea was to create an infinite square tunnel using simple geometric shapes. I wanted to explore how a flat animation could create a sense of depth when projected onto physical objects.<br>
+I started by using a for loop to draw squares of different sizes. Then I added an offset variable to make them move continuously. At first, the squares disappeared suddenly at the edges, so I used transparency to make the transition smoother.<br>
+
+Next, I experimented with controlling the vanishing point using the mouse. I used map() to convert the mouse position into coordinates for the tunnel. I also added a keyboard shortcut to turn this interaction on and off.<br>
+
+Another challenge was connecting the six projection surfaces. Instead of displaying exactly the same animation on every surface, I used a reverseX parameter to make the odd and even surfaces move in opposite horizontal directions while keeping the same vertical movement.<br>
+
+Finally, I experimented with color and light. I used lerpColor() to create a gradient from pink-purple on the outside to blue on the inside. By layering lines with different stroke weights and transparency, I created a soft glowing effect.<br>
+
+During the process, I also encountered coding problems, such as duplicated keyPressed() functions and placing drawing code inside setup() instead of draw(). Fixing these problems helped me better understand how different functions work together.<br>
+    </p>
+
+
+
+    <h3>Video</h3>
+
+<video class="info-video" controls playsinline preload="metadata">
+  <source src="Video/Video.mp4" type="video/mp4">
+</video>
+
+  </div>
+</aside>
 </body>
 </html>
