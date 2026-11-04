@@ -27,13 +27,23 @@
     <h2>Week 7 · Practice 2</h2>
 
     <h3>About this work</h3>
-    <p>这里填写这个作品的说明。</p>
+    <p> About This Work
+
+The color detection technique we learned in class made me think about places where a specific color appears frequently. Then I thought of Target.
+
+When people walk out of Target, many of them are carrying shopping bags with the red Target logo. I wanted to capture these red logos in a video and transform them into something different.
+
+For me, shopping at Target and bringing home things I like is a happy experience. So I decided to turn the red logos into heart-shaped pixels, as if people were walking around carrying bags full of love and happiness.
+
+I used p5.js to detect the red areas in the video and turn the rest of the image black and white. Then I replaced the red areas with floating hearts. I used noise to change their sizes, positions, and transparency, making them feel more lively and organic.</p>
 
     <h3>Process</h3>
-    <p>这里填写制作过程和尝试。</p>
+    <p>I started by using createVideo() to play the video, then used loadPixels() and RGB values to detect the red areas. I turned the other pixels into grayscale to make the red logos stand out.
 
-    <h3>Reading response</h3>
-    <p>这里填写阅读反思。</p>
+At first, I tried drawing hearts using Bézier curves, but I found that rendering so many hearts made the video very slow. So I changed to using the heart symbol text("♥"), which worked much better.
+
+Finally, I used noise() and map() to create different heart sizes, positions, and transparency. I also added frameCount to make the hearts move slowly and naturally.</p>
+
   </div>
 </aside>
 </body>

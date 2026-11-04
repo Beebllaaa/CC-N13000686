@@ -27,13 +27,17 @@
     <h2>Week 7 · Practice 3</h2>
 
     <h3>About this work</h3>
-    <p>这里填写这个作品的说明。</p>
+    <p>This project is an interactive computational mirror that transforms live camera images into colorful contour lines. Instead of showing a normal reflection, it uses pixel brightness to create distortion. Darker areas create larger movements in the lines, while brighter areas remain closer to their original positions. Users can move the mouse to control the distortion and change how they see themselves.</p>
 
     <h3>Process</h3>
-    <p>这里填写制作过程和尝试。</p>
+    <p>Inspired by the pixel manipulation techniques we learned in class, I wanted to explore how camera data could be translated into lines instead of individual shapes.
 
-    <h3>Reading response</h3>
-    <p>这里填写阅读反思。</p>
+I first used createCapture() to access the camera and loadPixels() to read the RGB values of each pixel. Then I calculated the brightness by averaging the three color values.
+
+Instead of using brightness to control the size of circles, as we practiced in class, I used it to control the vertical displacement of points along horizontal lines.
+
+I used beginShape() and vertex() to connect these points, creating distorted contour lines. Finally, I added the original pixel colors and used mouseX to control the strength of the distortion.</p>
+
   </div>
 </aside>
 </body>
