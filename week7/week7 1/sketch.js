@@ -29,7 +29,7 @@ function draw() {
   noStroke();
 
 // map circle radius to mouse position
-  rad = floor(map(mouseX, 0, width, 2, 32));
+ rad = floor(map(constrain(mouseX, 0, width), 0, width, 2, 32));
   diam = rad * 2;
   translate(xoff, yoff);
 // draw circles on screen that correspond to image dimensions
