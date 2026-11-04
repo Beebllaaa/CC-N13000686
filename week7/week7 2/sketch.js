@@ -35,8 +35,8 @@ function draw() {
 
   }
   vid.updatePixels();
-translate(width/2, height/2);
-imageMode(CENTER);
+  translate(width/2, height/2);
+  imageMode(CENTER);
   image(vid, 0, 0);
   
 }
