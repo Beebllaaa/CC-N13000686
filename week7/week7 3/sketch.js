@@ -1,45 +1,37 @@
-let cam; 
+let mirror;
 
 async function setup() {
-  createCanvas(800, 600);
+  createCanvas(640, 480);
   pixelDensity(1);
-  // load a video
-  cam = await createCapture(VIDEO);
-  cam.size(1000, 600);
-  cam.hide();
+  mirror = await createCapture(VIDEO);
+  mirror.size(640, 480);
+  mirror.hide();
+  noStroke();
+  fill(0);
 }
 
 function draw() {
-  background(0);
- 
-  // exaggerate values based on mouseY
-  let exaggeration = floor(map(mouseY, 0, height, 255, 0));
+  background(255);
+  mirror.loadPixels();
+  let stepSize = round(constrain(mouseX / 8, 6, 32)); // based on mouseX limit the size of our ellipses' diameter to be between 6 and 32 px. 
 
-  // get a copy of the camera image
-  let img = cam.get();
+  for (let y = 0; y < height; y += stepSize) {
+    for (let x = 0; x < width; x += stepSize) {
 
-  img.loadPixels();
+      let i = (y * width + x)*4; // get the pixel from the array
 
-  // note: i += 4 in the loop update
-  for (let i = 0; i < img.pixels.length; i += 4) {
-    // get color values from image
-    let redValue = img.pixels[i + 0];
-    let greenValue = img.pixels[i + 1];
-    let blueValue = img.pixels[i + 2];
+      // get pixel values
+      let r = mirror.pixels[i];
+      let g = mirror.pixels[i + 1];
+      let b = mirror.pixels[i + 2];
 
-    // which is the dominant value
-    let maxColorValue = max(redValue, greenValue, blueValue);
+      // Perceptual luminance formula: 0.299*R + 0.587*G + 0.114*B
+      let brightness = (0.299 * r + 0.587 * g + 0.114 * b);
+      // gives a percentage 0 is bright, 100 is dark
+      let darkness = (255 - brightness) / 255;
 
-    // exaggerate the domiant one, but in the img
-    if (maxColorValue == redValue) {
-      img.pixels[i] = exaggeration;
-    } else if (maxColorValue == greenValue) {
-      img.pixels[i + 1] = exaggeration;
-    } else if (maxColorValue == blueValue) {
-      img.pixels[i + 2] = exaggeration;
+      let radius = stepSize * darkness;
+      ellipse(x, y, radius, radius);
     }
   }
-
-  img.updatePixels();
-  image(img, 0, 0);
 }
