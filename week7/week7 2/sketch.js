@@ -32,11 +32,10 @@ function draw() {
       let g = vid.pixels[i + 1];
       let b = vid.pixels[i + 2];
 
-      // Detect red pixels
       if (r > 100 && r > g * 1.5 && r > b * 1.5) {
         // Keep red pixels unchanged
       } else {
-        // Calculate grayscale
+
         let gray = (r + g + b) / 3;
 
         vid.pixels[i] = gray;
@@ -72,26 +71,34 @@ function draw() {
 
         // Noise controls heart size
         let n = noise(x * 0.05, y * 0.05);
-
         let heartSize = map(n, 0, 1, 10, 60);
 
-        // Noise controls heart position
+        // Noise controls floating movement
         let offsetX = map(
-          noise(x * 0.1, y * 0.1),
-          0, 1, -8, 8
+          noise(x * 0.1, y * 0.1, frameCount * 0.005),
+          0, 1, -15, 15
         );
 
         let offsetY = map(
-          noise(x * 0.1 + 100, y * 0.1),
-          0, 1, -8, 8
+          noise(x * 0.1 + 100, y * 0.1, frameCount * 0.005),
+          0, 1, -15, 15
         );
 
-        // Semi-transparent red
-        fill(255, 0, 0, 100);
+        // Noise controls transparency
+        let alpha = map(
+          noise(x * 0.05, y * 0.05, frameCount * 0.01),
+          0, 1, 0, 200
+        );
 
+        // Draw heart
+        fill(255, 0, 0, alpha);
         textSize(heartSize);
 
-        text("♥", x - vid.width / 2 + offsetX, y - vid.height / 2 + offsetY);
+        text(
+          "♥",
+          x - vid.width / 2 + offsetX,
+          y - vid.height / 2 + offsetY
+        );
       }
     }
   }
