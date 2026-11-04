@@ -34,11 +34,8 @@ function draw() {
 
       // Detect red pixels
       if (r > 100 && r > g * 1.5 && r > b * 1.5) {
-
         // Keep red pixels unchanged
-
       } else {
-
         // Calculate grayscale
         let gray = (r + g + b) / 3;
 
@@ -57,8 +54,10 @@ function draw() {
   imageMode(CENTER);
   image(vid, 0, 0);
 
-  // Draw red dots
+  // Draw hearts on red areas
   let step = 20;
+
+  noStroke();
 
   for (let y = 0; y < vid.height; y += step) {
     for (let x = 0; x < vid.width; x += step) {
@@ -71,10 +70,28 @@ function draw() {
 
       if (r > 100 && r > g * 1.5 && r > b * 1.5) {
 
-        fill(255, 0, 0);
-        noStroke();
+        // Noise controls heart size
+        let n = noise(x * 0.05, y * 0.05);
 
-        circle(x - vid.width / 2, y - vid.height / 2, 10);
+        let heartSize = map(n, 0, 1, 10, 60);
+
+        // Noise controls heart position
+        let offsetX = map(
+          noise(x * 0.1, y * 0.1),
+          0, 1, -8, 8
+        );
+
+        let offsetY = map(
+          noise(x * 0.1 + 100, y * 0.1),
+          0, 1, -8, 8
+        );
+
+        // Semi-transparent red
+        fill(255, 0, 0, 100);
+
+        textSize(heartSize);
+
+        text("♥", x - vid.width / 2 + offsetX, y - vid.height / 2 + offsetY);
       }
     }
   }
