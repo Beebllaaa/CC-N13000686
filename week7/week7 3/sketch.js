@@ -1,37 +1,55 @@
-let mirror;
+let capture; // object to hold the video grabber 
 
 async function setup() {
   createCanvas(640, 480);
   pixelDensity(1);
-  mirror = await createCapture(VIDEO);
-  mirror.size(640, 480);
-  mirror.hide();
-  noStroke();
-  fill(0);
+  // start video grabber
+  capture = await createCapture(VIDEO);
+  capture.size(640, 480);
+  capture.hide(); // hide HTML video
 }
 
 function draw() {
-  background(255);
-  mirror.loadPixels();
-  let stepSize = round(constrain(mouseX / 8, 6, 32)); // based on mouseX limit the size of our ellipses' diameter to be between 6 and 32 px. 
-
-  for (let y = 0; y < height; y += stepSize) {
-    for (let x = 0; x < width; x += stepSize) {
-
-      let i = (y * width + x)*4; // get the pixel from the array
-
-      // get pixel values
-      let r = mirror.pixels[i];
-      let g = mirror.pixels[i + 1];
-      let b = mirror.pixels[i + 2];
-
+  background(0);
+  
+  // create pixel array for the grabber
+  capture.loadPixels();
+  
+  // some variables to track the pixel and location
+  let brightest = 0;
+  let drawX = 0;
+  let drawY = 0;
+  
+  // loop through all pixels in the image
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+       // magic algo to get the number in the pixel array
+      let i = (y * width + x)*4;
+      // extraxct the RGB values 
+      let r = capture.pixels[i];
+      let g = capture.pixels[i+1];
+      let b = capture.pixels[i+2];
+      
       // Perceptual luminance formula: 0.299*R + 0.587*G + 0.114*B
-      let brightness = (0.299 * r + 0.587 * g + 0.114 * b);
-      // gives a percentage 0 is bright, 100 is dark
-      let darkness = (255 - brightness) / 255;
-
-      let radius = stepSize * darkness;
-      ellipse(x, y, radius, radius);
+      let bright = (0.299 * r + 0.587 * g + 0.114 * b);
+      
+      // if the current pixel's brightness is 
+      // greater than the previous brightest
+      // update the variable and the x/y location to draw
+      if(brightest<=bright){
+        brightest = bright;
+        drawX = x;
+        drawY = y;
+      }
+      
     }
   }
+ // update pixel array
+  capture.updatePixels();
+  // draw the array
+  image(capture, 0, 0);
+  // draw an ellipse over the brightest pixel
+  strokeWeight(5);
+  stroke(200, 10, 180);
+  ellipse(drawX, drawY, 20, 20);
 }
