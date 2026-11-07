@@ -15,10 +15,16 @@ async function setup() {
 
   handPose = await ml5.handPose();
   handPose.detectStart(video, gotHands);
+
+  cow = await loadImage("assets/cow.png");
 }
+
     
 function draw() {
   background(5, 10, 45);
+
+  imageMode(CENTER);
+  image(cow, width / 2, height / 2, 100, 130);
 
   if (hands.length > 0) {
     let hand = hands[0];
