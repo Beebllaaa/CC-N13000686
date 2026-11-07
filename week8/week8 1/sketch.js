@@ -27,8 +27,6 @@ function draw() {
     let b = hand.keypoints[finger0[i + 1]];
 
     line(a.x, a.y, b.x, b.y);
-    strokeWeight(40);
-    stroke(255);
 
     }
  //draw index finger
@@ -38,8 +36,7 @@ function draw() {
     let b = hand.keypoints[finger1[i + 1]];
 
     line(a.x, a.y, b.x, b.y);
-    strokeWeight(40);
-    stroke(255);
+
     }
 
     //draw middle finger
@@ -49,8 +46,7 @@ function draw() {
     let b = hand.keypoints[finger2[i + 1]];
 
     line(a.x, a.y, b.x, b.y);
-    strokeWeight(40);
-    stroke(255);
+
     }
 
 //draw ring finger
@@ -60,8 +56,7 @@ function draw() {
     let b = hand.keypoints[finger3[i + 1]];
 
     line(a.x, a.y, b.x, b.y);
-    strokeWeight(40);
-    stroke(255);
+
     }
 
     //draw ring finger
@@ -71,10 +66,24 @@ function draw() {
     let b = hand.keypoints[finger4[i + 1]];
 
     line(a.x, a.y, b.x, b.y);
-    strokeWeight(40);
-    stroke(255);
     }
 
+    strokeWeight(20);
+    stroke(255);
+    
+    //draw palm
+    push();
+        let palm = [0, 1, 5, 9, 13, 17, 0];
+        fill(255);
+        noStroke();
+
+        beginShape();
+        for (let i = 0; i < palm.length - 1; i++) {
+            let a = hand.keypoints[palm[i]];
+            vertex(a.x, a.y);
+        }
+        endShape(CLOSE);
+    pop();
     }
     
   }
