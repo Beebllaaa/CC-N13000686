@@ -107,7 +107,7 @@ function draw() {
     // Are the fingers close together?
     if (dist(fingerX, fingerY, thumbX, thumbY) < 20) {
 
-      // Create a cow when pinching starts
+      // Create a duck when pinching starts
       if (pinching == false) {
 
         shapes.push({
@@ -146,7 +146,7 @@ function draw() {
   shape.speed = 0;
 }
     
-    // Draw cow
+    // Draw duck
     push();
 
     translate(shape.x, shape.y);
