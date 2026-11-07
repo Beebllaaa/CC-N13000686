@@ -2,9 +2,9 @@
 let video; // camera grabber
 let handPose; // ml5.js model
 let hands = []; // array to keep track of points
+let cow;
 let shapes = [];
 let pinching = false;
-let currentShape = [];
 
 async function setup() {
   createCanvas(800, 600);
@@ -22,9 +22,6 @@ async function setup() {
     
 function draw() {
   background(5, 10, 45);
-
-  imageMode(CENTER);
-  image(cow, width / 2, height / 2, 100, 130);
 
   if (hands.length > 0) {
     let hand = hands[0];
@@ -94,39 +91,24 @@ function draw() {
     let thumbX = hand.thumb_tip.x;
     let thumbY = hand.thumb_tip.y;
 
+    
     // Are the fingers close together?
     if (dist(fingerX, fingerY, thumbX, thumbY) < 30) {
 
-      pinching = true;
-      currentShape = [];
+      // Create a cow when pinching starts
+      if (pinching == false) {
 
-      let points = [1, 2, 3, 4, 8, 7, 6, 5];
-
-      fill(255);
-      noStroke();
-
-      beginShape();
-
-      for (let i = 0; i < points.length; i++) {
-        let p = hand.keypoints[points[i]];
-
-        vertex(p.x, p.y);
-        currentShape.push({ x: p.x, y: p.y });
-      }
-
-      endShape(CLOSE);
-
-    } else {
-
-      // Release the shape
-      if (pinching == true) {
         shapes.push({
-          points: currentShape,
-          y: 0,
+          x: (fingerX + thumbX) / 2,
+          y: (fingerY + thumbY) / 2,
           speed: 0
         });
+
       }
 
+      pinching = true;
+
+    } else {
       pinching = false;
     }
 
@@ -134,26 +116,22 @@ function draw() {
     pinching = false;
   }
 
-  // Draw falling shapes
+  // Draw falling cows
+  imageMode(CENTER);
+  noSmooth();
+
   for (let i = 0; i < shapes.length; i++) {
     let shape = shapes[i];
 
+    // Gravity
     shape.y += shape.speed;
     shape.speed += 0.3;
 
-    fill(255);
-    noStroke();
-
-    beginShape();
-
-    for (let j = 0; j < shape.points.length; j++) {
-      let p = shape.points[j];
-      vertex(p.x, p.y + shape.y);
-    }
-
-    endShape(CLOSE);
+    // Draw cow
+    image(cow, shape.x, shape.y, 100, 130);
   }
 }
+
 
 
 function gotHands(results) {
