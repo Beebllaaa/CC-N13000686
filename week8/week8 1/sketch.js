@@ -2,7 +2,7 @@
 let video; // camera grabber
 let handPose; // ml5.js model
 let hands = []; // array to keep track of points
-let cow;
+let duck;
 let shapes = [];
 let pinching = false;
 
@@ -16,18 +16,30 @@ async function setup() {
   handPose = await ml5.handPose();
   handPose.detectStart(video, gotHands);
 
-  cow = await loadImage("assets/cow.png");
+  duck = await loadImage("assets/duck.png");
 }
 
     
 function draw() {
-  background(5, 10, 45);
+  
+  // Camera background
+  strokeWeight(1);
+  imageMode(CORNER);
+  image(video, 0, 0, width, height);
+
+  // Blue gradient overlay
+  for (let y = 0; y < height; y++) {
+    let a = map(y, 0, height, 0, 255);
+
+    stroke(145,240,252, a);
+    line(0, y, width, y);
+  }
 
   if (hands.length > 0) {
     let hand = hands[0];
 
     strokeWeight(20);
-    stroke(255);
+    stroke(255,50);
     noFill();
 
     // Draw thumb
@@ -74,7 +86,7 @@ function draw() {
     push();
     let palm = [0, 1, 5, 9, 13, 17, 0];
 
-    fill(255);
+    stroke(255,50);
     noStroke();
 
     beginShape();
@@ -93,7 +105,7 @@ function draw() {
 
     
     // Are the fingers close together?
-    if (dist(fingerX, fingerY, thumbX, thumbY) < 30) {
+    if (dist(fingerX, fingerY, thumbX, thumbY) < 20) {
 
       // Create a cow when pinching starts
       if (pinching == false) {
@@ -102,7 +114,7 @@ function draw() {
             x: ((fingerX + thumbX) / 2 + hand.keypoints[5].x) / 2,
             y: (fingerY + thumbY) / 2,
           speed: 0,
-          stopY: 580 - random(0, 200)
+          stopY: 580 - random(0, 300)
         });
 
       }
@@ -133,8 +145,20 @@ function draw() {
   shape.y = shape.stopY;
   shape.speed = 0;
 }
-      // Draw cow
-    image(cow, shape.x, shape.y, 100, 130);
+    
+    // Draw cow
+    push();
+
+    translate(shape.x, shape.y);
+
+    let angle = sin(frameCount * 0.05) * 0.1;
+
+    rotate(angle);
+
+    image(duck, 0, 0, 100, 130);
+
+    pop();
+
 }
 }
 
