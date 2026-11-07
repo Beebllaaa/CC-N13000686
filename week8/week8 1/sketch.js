@@ -17,12 +17,17 @@ async function setup() {
 function draw() {
   background(5, 10, 45);
 
-
   if (hands.length > 0) {
-    let fingerX = hands[0].index_finger_tip.x;
-    let fingerY = hands[0].index_finger_tip.y;
-    let thumbX = hands[0].thumb_tip.x;
-    let thumbY = hands[0].thumb_tip.y;
+    let hand = hands[0];
+    
+ //draw index finger
+    let a = hand.keypoints[5];
+    let b = hand.keypoints[6];
+
+    stroke(255);
+    strokeWeight(4);
+
+    line(a.x, a.y, b.x, b.y);
 
     }
     
