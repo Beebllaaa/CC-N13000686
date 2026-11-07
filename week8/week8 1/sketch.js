@@ -101,7 +101,8 @@ function draw() {
         shapes.push({
             x: ((fingerX + thumbX) / 2 + hand.keypoints[5].x) / 2,
             y: (fingerY + thumbY) / 2,
-          speed: 0
+          speed: 0,
+          stopY: 580 - random(0, 200)
         });
 
       }
@@ -128,10 +129,10 @@ function draw() {
     shape.speed += 0.3;
 
     // Stop at the bottom
-    if (shape.y > 580) {
-      shape.y = 580 - random(0, 20);
-      shape.speed = 0;
-  }
+    if (shape.y > shape.stopY) {
+  shape.y = shape.stopY;
+  shape.speed = 0;
+}
       // Draw cow
     image(cow, shape.x, shape.y, 100, 130);
 }
