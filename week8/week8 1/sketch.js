@@ -99,8 +99,8 @@ function draw() {
       if (pinching == false) {
 
         shapes.push({
-          x: (fingerX + thumbX) / 2,
-          y: (fingerY + thumbY) / 2,
+            x: ((fingerX + thumbX) / 2 + hand.keypoints[5].x) / 2,
+            y: (fingerY + thumbY) / 2,
           speed: 0
         });
 
