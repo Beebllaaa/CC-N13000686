@@ -127,11 +127,15 @@ function draw() {
     shape.y += shape.speed;
     shape.speed += 0.3;
 
-    // Draw cow
-    image(cow, shape.x, shape.y, 100, 130);
+    // Stop at the bottom
+    if (shape.y > 580) {
+      shape.y = 580 - random(0, 20);
+      shape.speed = 0;
   }
+      // Draw cow
+    image(cow, shape.x, shape.y, 100, 130);
 }
-
+}
 
 
 function gotHands(results) {
