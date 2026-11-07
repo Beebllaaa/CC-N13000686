@@ -2,6 +2,9 @@
 let video; // camera grabber
 let handPose; // ml5.js model
 let hands = []; // array to keep track of points
+let shapes = [];
+let pinching = false;
+let currentShape = [];
 
 async function setup() {
   createCanvas(800, 600);
@@ -13,80 +16,138 @@ async function setup() {
   handPose = await ml5.handPose();
   handPose.detectStart(video, gotHands);
 }
-
+    
 function draw() {
   background(5, 10, 45);
 
   if (hands.length > 0) {
     let hand = hands[0];
 
-    //draw thumb
- let finger0 = [0, 1, 2, 3, 4];
-   for (let i = 0; i < finger0.length - 1; i++) {
-    let a = hand.keypoints[finger0[i]];
-    let b = hand.keypoints[finger0[i + 1]];
-
-    line(a.x, a.y, b.x, b.y);
-
-    }
- //draw index finger
- let finger1 = [0, 5, 6, 7, 8];
-   for (let i = 0; i < finger1.length - 1; i++) {
-    let a = hand.keypoints[finger1[i]];
-    let b = hand.keypoints[finger1[i + 1]];
-
-    line(a.x, a.y, b.x, b.y);
-
-    }
-
-    //draw middle finger
- let finger2 = [0, 9, 10, 11, 12];
-   for (let i = 0; i < finger2.length - 1; i++) {
-    let a = hand.keypoints[finger2[i]];
-    let b = hand.keypoints[finger2[i + 1]];
-
-    line(a.x, a.y, b.x, b.y);
-
-    }
-
-//draw ring finger
- let finger3 = [0, 13, 14, 15, 16];
-   for (let i = 0; i < finger2.length - 1; i++) {
-    let a = hand.keypoints[finger3[i]];
-    let b = hand.keypoints[finger3[i + 1]];
-
-    line(a.x, a.y, b.x, b.y);
-
-    }
-
-    //draw ring finger
- let finger4 = [0, 17, 18, 19, 20];
-   for (let i = 0; i < finger2.length - 1; i++) {
-    let a = hand.keypoints[finger4[i]];
-    let b = hand.keypoints[finger4[i + 1]];
-
-    line(a.x, a.y, b.x, b.y);
-    }
-
     strokeWeight(20);
     stroke(255);
-    
-    //draw palm
-    push();
-        let palm = [0, 1, 5, 9, 13, 17, 0];
-        fill(255);
-        noStroke();
+    noFill();
 
-        beginShape();
-        for (let i = 0; i < palm.length - 1; i++) {
-            let a = hand.keypoints[palm[i]];
-            vertex(a.x, a.y);
-        }
-        endShape(CLOSE);
-    pop();
+    // Draw thumb
+    let finger0 = [0, 1, 2, 3, 4];
+    for (let i = 0; i < finger0.length - 1; i++) {
+      let a = hand.keypoints[finger0[i]];
+      let b = hand.keypoints[finger0[i + 1]];
+      line(a.x, a.y, b.x, b.y);
     }
-    
+
+    // Draw index finger
+    let finger1 = [0, 5, 6, 7, 8];
+    for (let i = 0; i < finger1.length - 1; i++) {
+      let a = hand.keypoints[finger1[i]];
+      let b = hand.keypoints[finger1[i + 1]];
+      line(a.x, a.y, b.x, b.y);
+    }
+
+    // Draw middle finger
+    let finger2 = [0, 9, 10, 11, 12];
+    for (let i = 0; i < finger2.length - 1; i++) {
+      let a = hand.keypoints[finger2[i]];
+      let b = hand.keypoints[finger2[i + 1]];
+      line(a.x, a.y, b.x, b.y);
+    }
+
+    // Draw ring finger
+    let finger3 = [0, 13, 14, 15, 16];
+    for (let i = 0; i < finger3.length - 1; i++) {
+      let a = hand.keypoints[finger3[i]];
+      let b = hand.keypoints[finger3[i + 1]];
+      line(a.x, a.y, b.x, b.y);
+    }
+
+    // Draw pinky
+    let finger4 = [0, 17, 18, 19, 20];
+    for (let i = 0; i < finger4.length - 1; i++) {
+      let a = hand.keypoints[finger4[i]];
+      let b = hand.keypoints[finger4[i + 1]];
+      line(a.x, a.y, b.x, b.y);
+    }
+
+    // Draw palm
+    push();
+    let palm = [0, 1, 5, 9, 13, 17, 0];
+
+    fill(255);
+    noStroke();
+
+    beginShape();
+    for (let i = 0; i < palm.length - 1; i++) {
+      let a = hand.keypoints[palm[i]];
+      vertex(a.x, a.y);
+    }
+    endShape(CLOSE);
+    pop();
+
+    // Get finger positions
+    let fingerX = hand.index_finger_tip.x;
+    let fingerY = hand.index_finger_tip.y;
+    let thumbX = hand.thumb_tip.x;
+    let thumbY = hand.thumb_tip.y;
+
+    // Are the fingers close together?
+    if (dist(fingerX, fingerY, thumbX, thumbY) < 30) {
+
+      pinching = true;
+      currentShape = [];
+
+      let points = [1, 2, 3, 4, 8, 7, 6, 5];
+
+      fill(255);
+      noStroke();
+
+      beginShape();
+
+      for (let i = 0; i < points.length; i++) {
+        let p = hand.keypoints[points[i]];
+
+        vertex(p.x, p.y);
+        currentShape.push({ x: p.x, y: p.y });
+      }
+
+      endShape(CLOSE);
+
+    } else {
+
+      // Release the shape
+      if (pinching == true) {
+        shapes.push({
+          points: currentShape,
+          y: 0,
+          speed: 0
+        });
+      }
+
+      pinching = false;
+    }
+
+  } else {
+    pinching = false;
   }
+
+  // Draw falling shapes
+  for (let i = 0; i < shapes.length; i++) {
+    let shape = shapes[i];
+
+    shape.y += shape.speed;
+    shape.speed += 0.3;
+
+    fill(255);
+    noStroke();
+
+    beginShape();
+
+    for (let j = 0; j < shape.points.length; j++) {
+      let p = shape.points[j];
+      vertex(p.x, p.y + shape.y);
+    }
+
+    endShape(CLOSE);
+  }
+}
 
 
 function gotHands(results) {
