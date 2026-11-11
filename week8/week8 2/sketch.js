@@ -98,7 +98,7 @@ function drawDivider() {
 
 function deformEye(region, openness) {
   const target = imageRegionToCanvas(region);
-  const closure = constrain(map(openness, 0.68, 0.14, 0, 1), 0, 1);
+  const closure = constrain(map(openness, 0.9, 0.28, 0, 1), 0, 1);
 
   if (closure === 0) {
     return;
@@ -124,7 +124,7 @@ function deformEye(region, openness) {
 }
 
 function drawEyeClosure(region, openness) {
-  const closure = constrain(map(openness, 0.68, 0.14, 0, 1), 0, 1);
+  const closure = constrain(map(openness, 0.9, 0.28, 0, 1), 0, 1);
 
   if (closure === 0) {
     return;
@@ -134,15 +134,13 @@ function drawEyeClosure(region, openness) {
 
   push();
   noFill();
-  stroke(48, 20, 16, 210 * closure);
-  strokeWeight(lerp(0.5, 2.4, closure));
-  arc(
-    target.x,
+  stroke(38, 15, 12, 240 * closure);
+  strokeWeight(lerp(1, 5, closure));
+  line(
+    target.x - target.width * 0.34,
     target.y,
-    target.width * 0.72,
-    target.height * 0.28,
-    0,
-    PI
+    target.x + target.width * 0.34,
+    target.y
   );
   pop();
 }
@@ -186,9 +184,9 @@ function drawMouthGap(region, openness) {
   noStroke();
   fill(96, 12, 28, 235);
   ellipse(
-    target.x,
+    target.x + target.width * 0.18,
     target.y,
-    target.width * 0.42,
+    target.width * 0.75,
     gapHeight
   );
   pop();
