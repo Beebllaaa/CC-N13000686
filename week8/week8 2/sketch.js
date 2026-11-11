@@ -71,6 +71,9 @@ async function setup() {
   });
 
   faceMesh.detectStart(video, gotFaces);
+
+  console.log("Current Layers:", JSON.stringify(layers));
+console.log("Saul Offset:", saulOffset);
 }
 
 function draw() {
