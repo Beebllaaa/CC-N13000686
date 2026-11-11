@@ -17,9 +17,9 @@ const portrait = {
 
 // These regions are measured in the original Mister White image.
 const features = {
-  leftEye: { x: 318, y: 320, width: 88, height: 58 },
+  leftEye: { x: 340, y: 320, width: 88, height: 58 },
   rightEye: { x: 440, y: 320, width: 88, height: 58 },
-  mouth: { x: 354, y: 455, width: 140, height: 90 }
+  mouth: { x: 354, y: 405, width: 140, height: 90 }
 };
 
 const options = {
@@ -79,7 +79,7 @@ function drawCamera() {
   push();
   translate(width, 0);
   scale(-1, 1);
-  image(video, width * 0.75, height / 2, 480, 540);
+  image(video, width * 0.25, height / 2, 480, 540);
   pop();
 
   drawLabel("你", width * 0.75, height - 24);
