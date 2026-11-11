@@ -1,7 +1,7 @@
 let faceMesh;
 let video;
 let faces = [];
-let mrWhite;
+let saul;
 let leftEyeClosure = 0;
 let rightEyeClosure = 0;
 
@@ -11,17 +11,17 @@ const canvasHeight = 540;
 const portrait = {
   x: 225,
   y: 270,
-  width: 440,
-  height: 434,
-  sourceWidth: 874,
-  sourceHeight: 862
+  width: 430,
+  height: 430,
+  sourceWidth: 638,
+  sourceHeight: 636
 };
 
 // These regions are measured in the original Mister White image.
 const features = {
-  leftEye: { x: 340, y: 320, width: 88, height: 58 },
-  rightEye: { x: 440, y: 320, width: 88, height: 58 },
-  mouth: { x: 354, y: 405, width: 140, height: 90 }
+  leftEye: { x: 235, y: 128, width: 68, height: 42 },
+  rightEye: { x: 337, y: 128, width: 68, height: 42 },
+  mouth: { x: 266, y: 208, width: 110, height: 68 }
 };
 
 const options = {
@@ -34,7 +34,7 @@ async function setup() {
   createCanvas(canvasWidth, canvasHeight);
   imageMode(CENTER);
 
-  mrWhite = await loadImage("assets/mr. white.png");
+  saul = await loadImage("assets/saul.png");
 
   video = createCapture(VIDEO);
   video.size(480, 540);
@@ -47,7 +47,7 @@ async function setup() {
 function draw() {
   background(12, 16, 30);
 
-  drawMrWhite();
+  drawSaul();
   drawCamera();
   drawDivider();
 
@@ -73,12 +73,12 @@ function draw() {
     24
   );
 
-  drawLabel("Mister White", width * 0.25, height - 24);
+  drawLabel("Saul", width * 0.25, height - 24);
 }
 
 function drawMrWhite() {
   image(
-    mrWhite,
+    saul,
     portrait.x,
     portrait.y,
     portrait.width,
@@ -118,7 +118,7 @@ function deformEye(region, openness) {
 
   clipEllipse(target, () => {
     image(
-      mrWhite,
+      saul,
       target.x,
       target.y,
       target.width,
@@ -166,7 +166,7 @@ function deformMouth(region, openness) {
     },
     () => {
       image(
-        mrWhite,
+        saul,
         target.x,
         target.y,
         target.width,
