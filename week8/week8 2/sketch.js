@@ -2,6 +2,8 @@ let faceMesh;
 let video;
 let faces = [];
 let mrWhite;
+let leftEyeClosure = 0;
+let rightEyeClosure = 0;
 
 const canvasWidth = 960;
 const canvasHeight = 540;
@@ -268,6 +270,16 @@ function getExpression(face) {
       1
     )
   };
+}
+
+function updateEyeClosure(openness, currentClosure) {
+  const detectedClosure = constrain(1 - openness, 0, 1);
+
+  if (detectedClosure > currentClosure) {
+    return detectedClosure;
+  }
+
+  return max(0, currentClosure - 0.025);
 }
 
 function getDistanceRatio(topPoint, bottomPoint, leftPoint, rightPoint) {
