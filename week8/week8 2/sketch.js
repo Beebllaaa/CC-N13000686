@@ -12,8 +12,18 @@ const labelY = 526;
 
 const portrait = { x: 225, y: 270, width: 430, height: 430 };
 const layers = {
-  eyes: { x: 225, y: 157, width: 120, height: 52 },
-  mouth: { x: 225, y: 220, width: 82, height: 50 }
+  eyes: {
+    x: 220,
+    y: 155.9375,
+    width: 102.6277875,
+    height: 44.47204125
+  },
+  mouth: {
+    x: 217.5,
+    y: 234.0625,
+    width: 121.15134639,
+    height: 73.87277219
+  }
 };
 
 const sourceBounds = {
@@ -48,7 +58,7 @@ async function setup() {
     await loadImage("assets/saul-mouth-open.png")
   ];
 
-  //loadSavedLayout();
+ // loadSavedLayout();
 
   video = createCapture(VIDEO);
   video.size(480, 540);
