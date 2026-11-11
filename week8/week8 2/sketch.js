@@ -60,7 +60,10 @@ function draw() {
   // original eyes and mouth are redrawn with different vertical proportions.
   deformEye(features.leftEye, expression.leftEyeOpen);
   deformEye(features.rightEye, expression.rightEyeOpen);
+  drawEyeClosure(features.leftEye, expression.leftEyeOpen);
+  drawEyeClosure(features.rightEye, expression.rightEyeOpen);
   deformMouth(features.mouth, expression.mouthOpen);
+  drawMouthGap(features.mouth, expression.mouthOpen);
 
   drawLabel("Mister White", width * 0.25, height - 24);
 }
@@ -95,7 +98,13 @@ function drawDivider() {
 
 function deformEye(region, openness) {
   const target = imageRegionToCanvas(region);
-  const sourceHeight = max(5, region.height * openness);
+  const closure = constrain(map(openness, 0.68, 0.14, 0, 1), 0, 1);
+
+  if (closure === 0) {
+    return;
+  }
+
+  const sourceHeight = lerp(region.height, 6, closure);
   const sourceY =
     region.y + (region.height - sourceHeight) / 2;
 
@@ -112,6 +121,30 @@ function deformEye(region, openness) {
       sourceHeight
     );
   });
+}
+
+function drawEyeClosure(region, openness) {
+  const closure = constrain(map(openness, 0.68, 0.14, 0, 1), 0, 1);
+
+  if (closure === 0) {
+    return;
+  }
+
+  const target = imageRegionToCanvas(region);
+
+  push();
+  noFill();
+  stroke(48, 20, 16, 210 * closure);
+  strokeWeight(lerp(0.5, 2.4, closure));
+  arc(
+    target.x,
+    target.y,
+    target.width * 0.72,
+    target.height * 0.28,
+    0,
+    PI
+  );
+  pop();
 }
 
 function deformMouth(region, openness) {
@@ -139,6 +172,26 @@ function deformMouth(region, openness) {
       );
     }
   );
+}
+
+function drawMouthGap(region, openness) {
+  if (openness < 0.08) {
+    return;
+  }
+
+  const target = imageRegionToCanvas(region);
+  const gapHeight = map(openness, 0.08, 1, 3, target.height * 0.42);
+
+  push();
+  noStroke();
+  fill(96, 12, 28, 235);
+  ellipse(
+    target.x,
+    target.y,
+    target.width * 0.42,
+    gapHeight
+  );
+  pop();
 }
 
 function imageRegionToCanvas(region) {
