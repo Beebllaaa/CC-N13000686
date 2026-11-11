@@ -28,10 +28,29 @@
     <h2>Week 8 · Practice 2</h2>
 
     <h3>About this work</h3>
-    <p></p>
+    <p>
+<strong>Eye Interaction:</strong> When you blink, Saul Goodman's eyes change accordingly, following your eye movements.
+<br><br>
+<strong>Mouth Interaction:</strong> When you open or close your mouth, Saul's mouth changes between different expressions.
+<br><br>
+<strong>Speech Bubble:</strong> When your mouth opens, a speech bubble with the text "Better Call Saul!!!" gradually appears.
+    </p>
 
     <h3>Process</h3>
-    <p></p>
+    <p>
+This project was developed with the assistance of OpenAI Codex. I was responsible for the creative concept, visual direction, asset preparation, and interaction design, while Codex assisted with code generation, debugging, and technical implementation.
+<br><br>
+The development of this project went through several iterations, evolving from simple layer animation into an interactive experience combining AI-generated assets and real-time face tracking.
+<br><br>
+Initially, I tried to crop Saul's eyes and mouth from the original portrait and separate them into individual layers. My first idea was to simulate blinking and mouth movements by adjusting the shapes, positions, and overlaps of these layers. However, after testing, I found that the expressions looked unnatural and the transitions were not smooth enough.
+<br><br>
+To improve the result, I changed my approach and used AI to generate different facial expressions of Saul, including open eyes, half-closed eyes, fully closed eyes, half-open mouth, and fully open mouth. I then saved all these generated images in the project's Assets folder and loaded them into the program as separate image layers.
+<br><br>
+Next, with Codex's assistance, I implemented real-time face tracking using p5.js and the ml5.js FaceMesh model. The webcam captures the user's face, and FaceMesh detects facial landmarks around the eyes and mouth. By calculating the distances between specific facial points, the program determines how open or closed the user's eyes and mouth are.
+<br><br>
+Finally, these facial movements are converted into numerical values between 0 and 1, which control the corresponding image layers. Using alpha blending, the program gradually adjusts the transparency of different layers, creating smooth transitions between facial expressions. The canvas continuously updates, allowing Saul's eyes and mouth to respond to the user's movements in real time. A speech bubble also appears when the user opens their mouth, completing the interactive face-matching experience.
+
+    </p>
 
   </div>
 </aside>
