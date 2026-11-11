@@ -65,6 +65,12 @@ function draw() {
   deformMouth(features.mouth, expression.mouthOpen);
   drawMouthGap(features.mouth, expression.mouthOpen);
 
+  drawLabel(
+    `眼睛 L: ${nf(expression.leftEyeOpen, 1, 2)}  R: ${nf(expression.rightEyeOpen, 1, 2)}`,
+    width * 0.75,
+    24
+  );
+
   drawLabel("Mister White", width * 0.25, height - 24);
 }
 
@@ -98,7 +104,7 @@ function drawDivider() {
 
 function deformEye(region, openness) {
   const target = imageRegionToCanvas(region);
-  const closure = constrain(map(openness, 0.9, 0.28, 0, 1), 0, 1);
+  const closure = constrain(1 - openness, 0, 1);
 
   if (closure === 0) {
     return;
@@ -124,7 +130,7 @@ function deformEye(region, openness) {
 }
 
 function drawEyeClosure(region, openness) {
-  const closure = constrain(map(openness, 0.9, 0.28, 0, 1), 0, 1);
+  const closure = constrain(1 - openness, 0, 1);
 
   if (closure === 0) {
     return;
