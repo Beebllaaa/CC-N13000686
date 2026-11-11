@@ -17,9 +17,9 @@ const portrait = {
 
 // These regions are measured in the original Mister White image.
 const features = {
-  leftEye: { x: 318, y: 270, width: 88, height: 58 },
-  rightEye: { x: 440, y: 270, width: 88, height: 58 },
-  mouth: { x: 354, y: 365, width: 140, height: 90 }
+  leftEye: { x: 318, y: 320, width: 88, height: 58 },
+  rightEye: { x: 440, y: 320, width: 88, height: 58 },
+  mouth: { x: 354, y: 455, width: 140, height: 90 }
 };
 
 const options = {
