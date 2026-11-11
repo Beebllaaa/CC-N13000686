@@ -27,10 +27,23 @@
     <h2>Week 8 · Practice 1</h2>
 
     <h3>About this work</h3>
-    <p></p>
+    <p>This project is a playful interactive experience using hand tracking. The camera captures the user's hand movements, and when the thumb and index finger pinch together, a little pixel duck appears between them.
+
+The background gradually changes from a live camera view to blue, creating the feeling of water. The ducks fall into the lower part of the screen and gently sway from side to side, as if they are floating on water.
+
+I wanted to turn a simple hand gesture into a fun interaction, where people can create their own little group of floating ducks.
+    </p>
 
     <h3>Process</h3>
-    <p></p>
+    <p>
+      I started by experimenting with ml5.js HandPose to detect hand movements. Using the hand keypoints, I connected the joints with white lines and shapes to visualize the hand.
+
+Next, I used the distance between the thumb and index finger to detect a pinch gesture. At first, the gesture generated a white shape based on the hand's keypoints. Later, I replaced it with a pixel duck image to make the interaction more playful.
+
+I used an array to store each duck's position and speed, allowing multiple ducks to appear and fall independently. Then, I added gravity and a random stopping position in the lower part of the screen. I also used sin() and rotate() to create a gentle swaying motion, making the ducks feel like they are floating.
+
+Finally, I added the live camera as the background and created a blue gradient overlay, transitioning from transparent at the top to solid blue at the bottom. This helped connect the user's real environment with the virtual water scene.
+    </p>
 
   </div>
 </aside>
