@@ -48,7 +48,7 @@ async function setup() {
     await loadImage("assets/saul-mouth-open.png")
   ];
 
-  loadSavedLayout();
+  //loadSavedLayout();
 
   video = createCapture(VIDEO);
   video.size(480, 540);
