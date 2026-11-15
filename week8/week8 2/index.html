@@ -1,14 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>week8-2 facemesh</title>
-    <link rel="stylesheet" href="../../info.css">
+    <title>week7-2 video changing</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../../info.css">
     <script src="https://cdn.jsdelivr.net/npm/p5@2.3.4/lib/p5.min.js"></script>
-    <script src="https://unpkg.com/ml5@1/dist/ml5.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/jdeboi/p5.mapper@main/dist/p5.mapper.min.js"></script>
 
 </head>
 <body>
@@ -25,32 +24,25 @@
   </button>
 
   <div class="info-content">
-    <h2>Week 8 · Practice 2</h2>
+    <h2>Week 7 · Practice 2</h2>
 
     <h3>About this work</h3>
-    <p>
-<strong>Eye Interaction:</strong> When you blink, Saul Goodman's eyes change accordingly, following your eye movements.
-<br><br>
-<strong>Mouth Interaction:</strong> When you open or close your mouth, Saul's mouth changes between different expressions.
-<br><br>
-<strong>Speech Bubble:</strong> When your mouth opens, a speech bubble with the text "Better Call Saul!!!" gradually appears.
-    </p>
+    <p> About This Work
+
+The color detection technique we learned in class made me think about places where a specific color appears frequently. Then I thought of Target.
+
+When people walk out of Target, many of them are carrying shopping bags with the red Target logo. I wanted to capture these red logos in a video and transform them into something different.
+
+For me, shopping at Target and bringing home things I like is a happy experience. So I decided to turn the red logos into heart-shaped pixels, as if people were walking around carrying bags full of love and happiness.
+
+I used p5.js to detect the red areas in the video and turn the rest of the image black and white. Then I replaced the red areas with floating hearts. I used noise to change their sizes, positions, and transparency, making them feel more lively and organic.</p>
 
     <h3>Process</h3>
-    <p>
-This project was developed with the assistance of OpenAI Codex. I was responsible for the creative concept, visual direction, asset preparation, and interaction design, while Codex assisted with code generation, debugging, and technical implementation.
-<br><br>
-The development of this project went through several iterations, evolving from simple layer animation into an interactive experience combining AI-generated assets and real-time face tracking.
-<br><br>
-Initially, I tried to crop Saul's eyes and mouth from the original portrait and separate them into individual layers. My first idea was to simulate blinking and mouth movements by adjusting the shapes, positions, and overlaps of these layers. However, after testing, I found that the expressions looked unnatural and the transitions were not smooth enough.
-<br><br>
-To improve the result, I changed my approach and used AI to generate different facial expressions of Saul, including open eyes, half-closed eyes, fully closed eyes, half-open mouth, and fully open mouth. I then saved all these generated images in the project's Assets folder and loaded them into the program as separate image layers.
-<br><br>
-Next, with Codex's assistance, I implemented real-time face tracking using p5.js and the ml5.js FaceMesh model. The webcam captures the user's face, and FaceMesh detects facial landmarks around the eyes and mouth. By calculating the distances between specific facial points, the program determines how open or closed the user's eyes and mouth are.
-<br><br>
-Finally, these facial movements are converted into numerical values between 0 and 1, which control the corresponding image layers. Using alpha blending, the program gradually adjusts the transparency of different layers, creating smooth transitions between facial expressions. The canvas continuously updates, allowing Saul's eyes and mouth to respond to the user's movements in real time. A speech bubble also appears when the user opens their mouth, completing the interactive face-matching experience.
+    <p>I started by using createVideo() to play the video, then used loadPixels() and RGB values to detect the red areas. I turned the other pixels into grayscale to make the red logos stand out.
 
-    </p>
+At first, I tried drawing hearts using Bézier curves, but I found that rendering so many hearts made the video very slow. So I changed to using the heart symbol text("♥"), which worked much better.
+
+Finally, I used noise() and map() to create different heart sizes, positions, and transparency. I also added frameCount to make the hearts move slowly and naturally.</p>
 
   </div>
 </aside>

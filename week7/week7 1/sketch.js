@@ -1,51 +1,104 @@
-let tree;
-let xoff, yoff;
-let rad = 12;
-let diam = rad * 2;
+let pMapper;
+let leftQuad;
+let rightQuad;
+let BellaQuad;
+let balls = [];
+let numBalls = 20;
+let a = 0;
 
-async function setup() {
-  createCanvas(600, 800);
-  pixelDensity(1);
-  tree = await loadImage("assets/tree.jpg");
-  
-  console.log("Original size: " + tree.width + " x " + tree.height);
+function setup() {
+    createCanvas(windowWidth, windowHeight, WEBGL);
+    pMapper = createProjectionMapper(this);
+    
+    // create three quads
+    leftQuad = pMapper.createQuadMap(400, 400);
+    rightQuad = pMapper.createQuadMap(400, 400);
+    BellaQuad = pMapper.createQuadMap(400, 400);
 
-  if (tree.width > width) tree.resize(width, 0);
-  if (tree.height > height) tree.resize(0, height);
-
-  console.log("Scaled size: " + tree.width + " x " + tree.height);
-
-  //load pixels of the image
-  tree.loadPixels();
-  console.log("pixel array size: " + tree.pixels.length);
-
-  // position in the center!
-  xoff = (width - tree.width) / 2;
-  yoff = (height - tree.height) / 2;
-}
-
-function draw() {
-  background(0);
-  noStroke();
-
-// map circle radius to mouse position
- rad = floor(map(constrain(mouseX, 0, width), 0, width, 2, 32));
-  diam = rad * 2;
-  translate(xoff, yoff);
-// draw circles on screen that correspond to image dimensions
-
-    for (let y = rad; y < tree.height - rad; y += diam) {
-    for (let x = rad; x < tree.width - rad; x += diam) {
-      // pull x,y from pixel array index 
-      let pixelNum = 4 * (y * tree.width + x);
-      // set the rgb valed based on the pixel vals
-      // arranged Red, Green, Blue, Alpha
-      let redValue = tree.pixels[pixelNum];
-      let greenValue = tree.pixels[pixelNum + 1];
-      let blueValue = tree.pixels[pixelNum + 2];
-
-      fill(redValue, greenValue, blueValue);
-      ellipse(x, y, 1.75 * rad, 1.75 * rad);
-      } 
+    // create array of circles
+    for (let i = 0; i < numBalls; i++) {
+        let oneBall = {
+            x: random(leftQuad.width),
+            y: random(leftQuad.height),
+            d: random(20, 100)
+        };
+        balls.push(oneBall);
     }
 }
+
+
+function draw() {
+    background(0);
+
+    // each quad runs its own function
+    leftQuad.displaySketch(dots);
+    rightQuad.displaySketch(stripes);
+    BellaQuad.displaySketch(BellaSketch);
+}
+
+function dots(mySketch) {
+    mySketch.background("aliceblue");  
+    mySketch.noStroke();
+    mySketch.fill(180, 10, 220, 40);
+    for (let i = 0; i < numBalls; i++) {
+        mySketch.ellipse(balls[i].x, balls[i].y, balls[i].d);
+        balls[i].x += random(-1, 1);
+    }
+}
+
+function stripes(yourSketch) {
+    yourSketch.background("orange");
+    yourSketch.stroke(255);
+    yourSketch.strokeWeight(5);
+    for (let i = 0; i < 400; i += 40) {
+        yourSketch.line(i, 0, i, 400);
+    }
+}
+
+function BellaSketch(BellaSketch) {
+    BellaSketch.background(255, 200, 100);
+    BellaSketch.fill(12, 49, 120);
+    BellaSketch.stroke(199, 49, 120);
+
+    if (mouseY < height / 2) {
+        a += 1;
+    } else {
+        a -= 1;
+    }
+
+    a = constrain(a, 0, 30);
+    BellaSketch.strokeWeight(a);
+
+    for (let x = 50; x < BellaSketch.width; x += 200) {
+        for (let y = 50; y < BellaSketch.height; y += 200) {
+            BellaSketch.rect(x, y, 100, 100);
+        }
+    }
+}
+
+
+
+function keyPressed() {
+    switch (key) {
+        case "c":
+            pMapper.toggleCalibration();
+            break;
+        case "f":
+            let fs = fullscreen();
+            fullscreen(!fs);
+            break;
+        case "l":
+            pMapper.load("maps/map.json");
+            break;
+        case "s":
+            pMapper.save("map.json");
+            break;
+    }
+}
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+}
+
+
+

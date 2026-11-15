@@ -1,105 +1,194 @@
 
-let vid;
+let pMapper;
 
-async function setup() {
-  createCanvas(windowWidth, windowHeight);
-  pixelDensity(1);
+let offset = 0;
 
-  vid = await createVideo("assets/target.mp4");
-  vid.autoplay();
-  vid.volume(0);
-  vid.hide();
-  vid.loop();
+let centerX = 200;
+let centerY = 200;
+let editCenter = false;
+
+// Box 1
+let quad1_1;
+let quad1_2;
+
+// Box 2
+let quad2_1;
+let quad2_2;
+
+// Box 3
+let quad3_1;
+let quad3_2;
+
+
+// SETUP
+
+function setup() {
+    createCanvas(windowWidth, windowHeight, WEBGL);
+
+    pMapper = createProjectionMapper(this);
+
+    // Box 1
+    quad1_1 = pMapper.createQuadMap(400, 400);
+    quad1_2 = pMapper.createQuadMap(400, 400);
+
+    // Box 2
+    quad2_1 = pMapper.createQuadMap(400, 400);
+    quad2_2 = pMapper.createQuadMap(400, 400);
+
+    // Box 3
+    quad3_1 = pMapper.createQuadMap(400, 400);
+    quad3_2 = pMapper.createQuadMap(400, 400);
+
+    pMapper.load("map.json");
 }
 
+
+// DRAW
+
 function draw() {
-  background(0);
+    background(0);
 
-  // Load video pixels
-  vid.loadPixels();
+    // Box 1
+    quad1_1.displaySketch(g => visual(g, false));
+    quad1_2.displaySketch(g => visual(g, true));
 
-  if (vid.pixels.length === 0) {
-    return;
-  }
+    // Box 2
+    quad2_1.displaySketch(g => visual(g, false));
+    quad2_2.displaySketch(g => visual(g, true));
 
-  // Change non-red pixels to grayscale
-  for (let y = 0; y < vid.height; y++) {
-    for (let x = 0; x < vid.width; x++) {
+    // Box 3
+    quad3_1.displaySketch(g => visual(g, false));
+    quad3_2.displaySketch(g => visual(g, true));
 
-      let i = (x + y * vid.width) * 4;
+    // Tunnel animation
+    offset += 1;
 
-      let r = vid.pixels[i];
-      let g = vid.pixels[i + 1];
-      let b = vid.pixels[i + 2];
-
-      if (r > 100 && r > g * 1.5 && r > b * 1.5) {
-        // Keep red pixels unchanged
-      } else {
-
-        let gray = (r + g + b) / 3;
-
-        vid.pixels[i] = gray;
-        vid.pixels[i + 1] = gray;
-        vid.pixels[i + 2] = gray;
-      }
+    if (offset >= 40) {
+        offset = 0;
     }
-  }
+}
 
-  // Update video pixels
-  vid.updatePixels();
 
-  // Display video
-  translate(width / 2, height / 2);
-  imageMode(CENTER);
-  image(vid, 0, 0);
+// VISUALS
 
-  // Draw hearts on red areas
-  let step = 20;
+function visual(g, reverseX) {
+    g.background(0);
 
-  noStroke();
+    g.noFill();
+    g.rectMode(CENTER);
 
-  for (let y = 0; y < vid.height; y += step) {
-    for (let x = 0; x < vid.width; x += step) {
+    for (let i = 0; i < 11; i++) {
 
-      let i = (x + y * vid.width) * 4;
+        let size = 40 + i * 40 - offset;
 
-      let r = vid.pixels[i];
-      let g = vid.pixels[i + 1];
-      let b = vid.pixels[i + 2];
+        if (size > 0 && size <= 400) {
 
-      if (r > 100 && r > g * 1.5 && r > b * 1.5) {
+            // Fade out near outer edge
+            let alpha = 255;
 
-        // Noise controls heart size
-        let n = noise(x * 0.05, y * 0.05);
-        let heartSize = map(n, 0, 1, 10, 60);
+            if (size > 360) {
+                alpha = map(size, 360, 400, 255, 0);
+            }
 
-        // Noise controls floating movement
-        let offsetX = map(
-          noise(x * 0.1, y * 0.1, frameCount * 0.005),
-          0, 1, -15, 15
-        );
+            // Reverse X for even-numbered quads
+            let targetX = centerX;
 
-        let offsetY = map(
-          noise(x * 0.1 + 100, y * 0.1, frameCount * 0.005),
-          0, 1, -15, 15
-        );
+            if (reverseX) {
+                targetX = 400 - centerX;
+            }
 
-        // Noise controls transparency
-        let alpha = map(
-          noise(x * 0.05, y * 0.05, frameCount * 0.01),
-          0, 1, 0, 200
-        );
+            // Tunnel vanishing point
+            let x = map(size, 400, 0, 200, targetX);
+            let y = map(size, 400, 0, 200, centerY);
 
-        // Draw heart
-        fill(255, 0, 0, alpha);
-        textSize(heartSize);
+            // Color gradient: blue inside, pink outside
+            let t = map(size, 0, 400, 0, 1);
 
-        text(
-          "♥",
-          x - vid.width / 2 + offsetX,
-          y - vid.height / 2 + offsetY
-        );
-      }
+            let innerColor = color(40, 140, 255);
+            let outerColor = color(255, 80, 200);
+
+            let c = lerpColor(innerColor, outerColor, t);
+
+            let r = red(c);
+            let gr = green(c);
+            let b = blue(c);
+
+            // Outer glow
+            g.stroke(r, gr, b, alpha * 0.12);
+            g.strokeWeight(12);
+            g.rect(x, y, size, size);
+
+            // Middle glow
+            g.stroke(r, gr, b, alpha * 0.3);
+            g.strokeWeight(6);
+            g.rect(x, y, size, size);
+
+            // Bright line
+            g.stroke(r, gr, b, alpha);
+            g.strokeWeight(2);
+            g.rect(x, y, size, size);
+        }
     }
-  }
+}
+
+
+// KEYBOARD CONTROLS
+
+function keyPressed() {
+    switch (key) {
+
+        case "c":
+            pMapper.toggleCalibration();
+            break;
+
+        case "f":
+            let fs = fullscreen();
+            fullscreen(!fs);
+            break;
+
+        case "l":
+            pMapper.load("map.json");
+            break;
+
+        case "s":
+            pMapper.save("map.json");
+            break;
+
+        case "p":
+        case "P":
+            editCenter = !editCenter;
+
+            if (editCenter) {
+                document.body.style.cursor = "none";
+            } else {
+                document.body.style.cursor = "default";
+            }
+
+            break;
+    }
+}
+
+
+// MOUSE CONTROL
+
+function mouseDragged() {
+    if (editCenter) {
+
+        centerX = constrain(
+            map(mouseX, 0, width, 0, 400),
+            0, 400
+        );
+
+        centerY = constrain(
+            map(mouseY, 0, height, 0, 400),
+            0, 400
+        );
+    }
+}
+
+
+// WINDOW RESIZE
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
 }

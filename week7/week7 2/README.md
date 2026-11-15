@@ -1,4 +1,4 @@
-# week7 2
+# week6 2
 
 ## Getting Started
 

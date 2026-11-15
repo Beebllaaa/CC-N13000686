@@ -1,79 +1,38 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Week 5</title>
 
-  <link rel="stylesheet" href="css/style.css">
+  <title>Week 4</title>
+
+  <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../info.css">
-  <script src="js/p5.js"></script>
 </head>
 
-<body>
+<body class="week-catalog">
+  <header>
+    <h1>Week 4</h1>
+    <p>Creative Coding</p>
+  </header>
 
-  <!-- Time information and slider -->
-  <div class="time-panel">
+  <main class="assignments">
+  <a class="box" href="./week4 1/">
+    <span>Practice 1</span>
+    <img src="../images/week4.1.jpg" alt="Week 4 Practice 1">
+  </a>
 
-    <!-- Seconds and minutes -->
-    <div class="time-display">
-      <div>
-        second: <span id="secondValue">00</span>
-      </div>
+  <a class="box" href="./week4 2/">
+    <span>Practice 2</span>
+    <img src="../images/week4.2.jpg" alt="Week 4 Practice 2">
+  </a>
 
-      <div>
-        minute: <span id="minuteValue">00</span>
-      </div>
-    </div>
+  <a class="box" href="./week4 3/">
+    <span>Practice 3</span>
+    <img src="../images/week4.3.jpg" alt="Week 4 Practice 3">
+  </a>
+</main>
 
-    <!-- Hour slider and label -->
-    <div class="time-control">
-
-      <input
-        type="range"
-        id="timeSlider"
-        min="0"
-        max="24"
-        value="12"
-        step="0.01"
-      >
-
-      <label for="timeSlider">
-        hour: <span id="timeValue">12:00</span>
-      </label>
-
-    </div>
-
-  </div>
-
-  <!-- p5.js sketch -->
-  <script src="sketch.js"></script>
-
-  <aside class="info-panel">
-  <button
-  type="button"
-  class="info-arrow"
-  aria-label="作品说明"
->
-  <svg viewBox="0 0 48 48" aria-hidden="true">
-    <path d="M30 10 L16 24 L30 38" />
-  </svg>
-</button>
-
-  <div class="info-content">
-    <h2>Week 5</h2>
-
-    <h3>About this work</h3>
-    <p>这里填写作品的主题和想法。</p>
-
-    <h3>Process</h3>
-    <p>这里填写制作过程、尝试和修改。</p>
-
-  </div>
-</aside>
-
+  <a class="back" href="../index.html">← Back</a>
 </body>
-
 </html>
