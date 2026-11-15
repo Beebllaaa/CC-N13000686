@@ -1,4 +1,10 @@
-# week8 1
+# Week 10 · Practice 1
+
+## Process Notes
+
+I was working on this late at night. At one point I yawned, and the music suddenly got louder because opening my mouth controls the volume. It startled me enough to wake me right back up. I had been testing the gesture on purpose, but a yawn ended up playing the instrument too.
+
+I also found it hard to bring each instrument in on the beat because the webcam takes a moment to register my gestures. I asked ChatGPT to generate loops that were all the same length and tempo. The loops start together and keep playing in the background. When I pinch my left thumb and a finger together, I unmute that finger’s instrument at whatever point it has already reached in the loop. This lets me layer sounds over the same beat even when my gesture registers a little late.
 
 ## Getting Started
 

@@ -3,13 +3,18 @@
     padding: 0;
     box-sizing: border-box;
 }
-canvas{
-    transform: scaleX(-1);
-}
+
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    place-items: center;
     min-height: 100vh;
-    background: #000000;
+    min-height: 100dvh;
+    background: #000;
+    overflow-x: clip;
+}
+
+canvas {
+    display: block;
+    width: min(100vw, calc(100dvh * 4 / 3)) !important;
+    height: auto !important;
 }
