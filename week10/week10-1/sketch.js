@@ -7,7 +7,7 @@ let started = false;
 let trackOn = [false, false, false, false];
 let trackColors = ["#FF826F", "#FFCE5C", "#63D9C3", "#BAA4FF"];
 let trackVolume = [1, 1, 1, 1];
-let adjustingTrack = -1;
+let fft;
 
 async function setup() {
   createCanvas(900, 600);
@@ -20,6 +20,11 @@ async function setup() {
   sounds[2] = await loadSound("assets/guitar.wav");
   sounds[3] = await loadSound("assets/keys.wav");
  
+  fft = new p5.FFT(512);
+
+  for (let i = 0; i < sounds.length; i++) {
+    sounds[i].connect(fft);
+  }
   handPose = await ml5.handPose();
   handPose.detectStart(video, gotHands);
 }
