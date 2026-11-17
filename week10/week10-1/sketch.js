@@ -3,6 +3,8 @@ let handPose;
 let hands = [];
 let sounds = [];
 let pinching = [false, false, false, false];
+let started = false;
+let trackOn = [false, false, false, false];
 
 async function setup() {
   createCanvas(900, 600);
@@ -36,9 +38,9 @@ if (hands.length > 0) {
     let finger = fingers[i];
     let distance = dist(finger.x, finger.y, thumb.x, thumb.y);
 
-    if (distance < 30 && !pinching[i]) {
-      playSound(sounds[i]);
-    }
+ if (distance < 30 && !pinching[i]) {
+  playSound(i);
+}
 
     pinching[i] = distance < 30;
 
@@ -58,12 +60,23 @@ if (hands.length > 0) {
 fill(0);
 }
 
-function playSound(sound) {
-  if (!sound.isPlaying()) {
-    sound.loop(true);
-    sound.play();
+function playSound(i) {
+  if (!started) {
+    for (let j = 0; j < sounds.length; j++) {
+      sounds[j].amp(0, 0);
+      sounds[j].loop(true);
+      sounds[j].play();
+    }
+
+    started = true;
+  }
+
+  trackOn[i] = !trackOn[i];
+
+  if (trackOn[i]) {
+    sounds[i].amp(1);
   } else {
-    sound.stop();
+    sounds[i].amp(0);
   }
 }
 
