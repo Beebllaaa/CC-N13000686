@@ -2,6 +2,7 @@ let sound;
 let video;
 let handPose;
 let hands = [];
+let pinching = false;
 
 async function setup() {
   createCanvas(900, 600);
@@ -15,10 +16,6 @@ async function setup() {
 
 function draw() {
   image(video, 0, 0, width, height);
-  textAlign(CENTER, CENTER);
-  text("click to play drum", width / 2, height / 2);
-
-  
 
 if (hands.length > 0) {
   let fingerX = hands[0].index_finger_tip.x;
@@ -27,6 +24,12 @@ if (hands.length > 0) {
   let thumbY = hands[0].thumb_tip.y;
 
   let distance = dist(fingerX, fingerY, thumbX, thumbY);
+  
+  
+  if (distance < 30 && !pinching) {
+  playDrum();
+}
+pinching = distance < 30;
 
   if (distance < 30) {
     fill(255, 180, 0);
@@ -41,12 +44,13 @@ if (hands.length > 0) {
 fill(0);
 }
 
-function mousePressed() {
-    if (!sound.isPlaying()) {
-        sound.play();
-    } else {
-        sound.stop();
-    }
+function playDrum() {
+  if (!sound.isPlaying()) {
+    sound.loop(true);
+    sound.play();
+  } else {
+    sound.stop();
+  }
 }
 
 function gotHands(results) {
