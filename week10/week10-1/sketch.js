@@ -27,65 +27,22 @@ async function setup() {
 function draw() {
   image(video, 0, 0, width, height);
 
-if (hands.length > 0) {
-  let hand = hands[0];
-  let thumb = hand.thumb_tip;
-  let fingers = [
-  hand.index_finger_tip,
-  hand.middle_finger_tip,
-  hand.ring_finger_tip,
-  hand.pinky_finger_tip
-];
+  let leftHand;
+  let rightHand;
 
-  for (let i = 0; i < fingers.length; i++) {
-    let finger = fingers[i];
-    let distance = dist(finger.x, finger.y, thumb.x, thumb.y);
-
- if (distance < 30 && !pinching[i]) {
-  playSound(i);
-}
-
-    pinching[i] = distance < 30;
-
-    //four
-    let x = width - finger.x;
-    let y = finger.y;
-
-    push();
-    stroke(trackColors[i]);
-    strokeWeight(3);
-
-    if (trackOn[i]) {
-      fill(trackColors[i]);
-    } else {
-      noFill();
+  for (let i = 0; i < hands.length; i++) {
+    if (hands[i].handedness === "Right") {
+      leftHand = hands[i];
+    } else if (hands[i].handedness === "Left") {
+      rightHand = hands[i];
     }
-
-    circle(x, y, 28);
-
-    if (pinching[i]) {
-      noStroke();
-      fill(255);
-      circle(x, y, 9);
-    }
-    pop();
-
-    if (pinching[i]) {
-      fill(trackColors[i]);
-    } else {  
-      noFill();
-    }
-
-    circle(width - finger.x, finger.y, 20);
   }
-  
-  //thumb
-  noStroke();
-  fill(255);
-  circle(width - thumb.x, thumb.y, 24);
-}
 
-fill(0);
+  if (leftHand) {
+    updateLeftHand(leftHand);
+  }
+
+  updateRightHand(rightHand);
 }
 
 function playSound(i) {
