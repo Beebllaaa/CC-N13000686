@@ -22,7 +22,7 @@ function draw() {
   let fingerX = hands[0].index_finger_tip.x;
   let fingerY = hands[0].index_finger_tip.y;
 
-  circle(fingerX, fingerY, 20);
+  circle(width - fingerX, fingerY, 20);
 }
 }
 
