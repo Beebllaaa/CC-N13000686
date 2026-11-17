@@ -26,16 +26,21 @@
         <h2>Week 10-1</h2>
 
         <h3>About this work</h3>
-        <p>Play this audiovisual instrument with your hands and face. Click the canvas and allow camera access to start the background beat.</p>
-        <p><strong>Turn tracks on or off.</strong> Touch your left thumb to one of your other left fingertips. From index finger to pinky, the tracks are bass, keys, plucked strings, and percussion. Release and pinch again to turn the track off.</p>
-        <p><strong>Adjust a track's volume.</strong> Use your right thumb and index finger to pinch a track marker. Pull it outward to turn the volume up, or push it back toward the left fingertip to turn it down.</p>
-        <p><strong>Tap out a rhythm.</strong> Touch your left thumb with your right index finger to play a short percussion hit. Lift your finger before tapping again.</p>
-        <p><strong>Adjust the overall volume.</strong> Open your mouth wider to make the whole mix louder. Close it to turn the volume down.</p>
-        <p><strong>Change the tempo.</strong> Blink at least four times within three seconds to speed up the beat and all four tracks together. Faster playback also raises the pitch. When you stop blinking, the music returns to its original tempo and pitch.</p>
-        <p><strong>Reset the tracks.</strong> Hold a left-hand fist briefly to turn off all four tracks and reset their volume levels. The background beat keeps playing.</p>
+   <p><strong>Turn tracks on or off.</strong> Pinch your left thumb and one of your other fingertips together. From index finger to pinky, the tracks are drums, bass, guitar, and keys. Release and pinch the same finger again to turn its track off.</p>
 
+<p><strong>Shape the visual.</strong> Move and spread the fingers of your right hand to reshape the polygon. Its color changes with the sound.</p>
+
+<p><strong>Control the volume.</strong> Open your mouth wider to make the active tracks louder. Close your mouth to mute them.</p>
         <h3>Process</h3>
-        <p></p>
+        <p>
+  I started with the class example that plays a drum sound on click. I used HandPose to replace the click with a finger pinch, then extended the same interaction to four tracks.
+</p> <p>
+After mirroring the camera with "flipped: true", the fingertip markers no longer lined up with my hand, so I adjusted their positions using "width - x". At first, each pinch restarted a track, which made the loops fall out of sync. I changed the code so the first pinch starts all four loops together, and later pinches mute or unmute each track without restarting it.
+</p>  <p>
+On screen, hollow and solid circles show which tracks are on. The five fingertips of my right hand form a polygon that changes color with the sound frequencies measured by FFT.
+</p>  <p>
+ I tried using my right hand to adjust each track’s volume, but the ring and pinky fingers were hard to control, so I switched to opening and closing my mouth to control the overall volume.
+</p>
       </div>
     </aside>
 </body>
