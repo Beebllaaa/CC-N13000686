@@ -6,6 +6,8 @@ let pinching = [false, false, false, false];
 let started = false;
 let trackOn = [false, false, false, false];
 let trackColors = ["#FF826F", "#FFCE5C", "#63D9C3", "#BAA4FF"];
+let trackVolume = [1, 1, 1, 1];
+let adjustingTrack = -1;
 
 async function setup() {
   createCanvas(900, 600);
