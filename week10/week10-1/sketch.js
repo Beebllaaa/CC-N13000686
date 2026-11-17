@@ -2,7 +2,7 @@ let sound;
 
 async function setup() {
   createCanvas(800, 600);
-  sound = await loadSound("assets/drum.mp3");
+  sound = await loadSound('assets/drums.wav');
 }
 
 function draw() {
