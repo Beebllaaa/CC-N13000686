@@ -12,5 +12,9 @@ function draw() {
 }
 
 function mousePressed() {
-  sound.play();
+    if (!sound.isPlaying()) {
+        sound.play();
+    } else {
+        sound.stop();
+    }
 }
