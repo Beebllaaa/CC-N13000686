@@ -15,14 +15,12 @@ function updateLeftHand(leftHand) {
     let x = width - finger.x;
     let y = finger.y;
 
-    // 刚捏上的时候，切换一次音轨
     if (distance < 30 && !pinching[i]) {
       playSound(i);
     }
 
     pinching[i] = distance < 30;
 
-    // 出声时是实心圆，静音时是空心环
     stroke(trackColors[i]);
     strokeWeight(3);
 
