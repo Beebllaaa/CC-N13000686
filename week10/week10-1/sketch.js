@@ -5,6 +5,7 @@ let sounds = [];
 let pinching = [false, false, false, false];
 let started = false;
 let trackOn = [false, false, false, false];
+let trackColors = ["#FF826F", "#FFCE5C", "#63D9C3", "#BAA4FF"];
 
 async function setup() {
   createCanvas(900, 600);
@@ -44,17 +45,42 @@ if (hands.length > 0) {
 
     pinching[i] = distance < 30;
 
-    if (pinching[i]) {
-      fill(255, 180, 0);
+    //four
+    let x = width - finger.x;
+    let y = finger.y;
+
+    push();
+    stroke(trackColors[i]);
+    strokeWeight(3);
+
+    if (trackOn[i]) {
+      fill(trackColors[i]);
     } else {
+      noFill();
+    }
+
+    circle(x, y, 28);
+
+    if (pinching[i]) {
+      noStroke();
       fill(255);
+      circle(x, y, 9);
+    }
+    pop();
+
+    if (pinching[i]) {
+      fill(trackColors[i]);
+    } else {  
+      noFill();
     }
 
     circle(width - finger.x, finger.y, 20);
   }
-
+  
+  //thumb
+  noStroke();
   fill(255);
-  circle(width - thumb.x, thumb.y, 20);
+  circle(width - thumb.x, thumb.y, 24);
 }
 
 fill(0);
