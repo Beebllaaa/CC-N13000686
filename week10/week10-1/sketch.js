@@ -18,12 +18,27 @@ function draw() {
   textAlign(CENTER, CENTER);
   text("click to play drum", width / 2, height / 2);
 
-  if (hands.length > 0) {
+  
+
+if (hands.length > 0) {
   let fingerX = hands[0].index_finger_tip.x;
   let fingerY = hands[0].index_finger_tip.y;
+  let thumbX = hands[0].thumb_tip.x;
+  let thumbY = hands[0].thumb_tip.y;
+
+  let distance = dist(fingerX, fingerY, thumbX, thumbY);
+
+  if (distance < 30) {
+    fill(255, 180, 0);
+  } else {
+    fill(255);
+  }
 
   circle(width - fingerX, fingerY, 20);
+  circle(width - thumbX, thumbY, 20);
 }
+
+fill(0);
 }
 
 function mousePressed() {
