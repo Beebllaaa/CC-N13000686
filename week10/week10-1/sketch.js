@@ -3,7 +3,7 @@ let video;
 
 async function setup() {
   createCanvas(900, 600);
-  video = createCapture(VIDEO);
+  video = createCapture(VIDEO, { flipped: true });
   video.size(900, 600);
   video.hide();
   sound = await loadSound('assets/drums.wav');
