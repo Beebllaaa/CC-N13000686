@@ -80,3 +80,13 @@ function playSound(i) {
 function gotHands(results) {
   hands = results;
 }
+
+function keyPressed(event) {
+  if (key === " ") {
+    if (!event.repeat) {
+      saveRightShape();
+    }
+
+    return false;
+  }
+}

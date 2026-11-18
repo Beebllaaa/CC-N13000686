@@ -1,15 +1,26 @@
+let currentShape = [];
+let savedShapes = [];
+
 function updateRightHand(rightHand) {
-  if (!rightHand) {
-    return;
+  currentShape = [];
+
+  if (rightHand) {
+    let fingers = [
+      rightHand.thumb_tip,
+      rightHand.index_finger_tip,
+      rightHand.middle_finger_tip,
+      rightHand.ring_finger_tip,
+      rightHand.pinky_finger_tip
+    ];
+
+    for (let i = 0; i < fingers.length; i++) {
+      currentShape.push({
+        x: width - fingers[i].x,
+        y: fingers[i].y
+      });
+    }
   }
 
-  let fingers = [
-    rightHand.thumb_tip,
-    rightHand.index_finger_tip,
-    rightHand.middle_finger_tip,
-    rightHand.ring_finger_tip,
-    rightHand.pinky_finger_tip
-  ];
 
 let spectrum = fft.analyze();
 
@@ -44,18 +55,43 @@ if (midLight === strength) {
 let edgeColor = lerpColor(color("#8cfffb"), flashColor, strength);
 let opacity = map(strength, 0, 1, 25, 210);
 
-push();
-fill(red(edgeColor), green(edgeColor), blue(edgeColor), opacity);
-stroke(edgeColor);
-strokeWeight(4);
+  push();
+  fill(red(edgeColor), green(edgeColor), blue(edgeColor), opacity);
+  stroke(edgeColor);
+  strokeWeight(4);
 
-  beginShape();
-
-  for (let i = 0; i < fingers.length; i++) {
-    let finger = fingers[i];
-    vertex(width - finger.x, finger.y);
+  for (let i = 0; i < savedShapes.length; i++) {
+    drawHandShape(savedShapes[i]);
   }
 
-  endShape(CLOSE);
+  drawHandShape(currentShape);
+
   pop();
+}
+
+function drawHandShape(shape) {
+  if (shape.length === 5) {
+    beginShape();
+
+    for (let i = 0; i < shape.length; i++) {
+      vertex(shape[i].x, shape[i].y);
+    }
+
+    endShape(CLOSE);
+  }
+}
+
+function saveRightShape() {
+  if (currentShape.length === 5) {
+    let shape = [];
+
+    for (let i = 0; i < currentShape.length; i++) {
+      shape.push({
+        x: currentShape[i].x,
+        y: currentShape[i].y
+      });
+    }
+
+    savedShapes.push(shape);
+  }
 }
