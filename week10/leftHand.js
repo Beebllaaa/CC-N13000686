@@ -7,6 +7,33 @@ function updateLeftHand(leftHand) {
     leftHand.pinky_finger_tip
   ];
 
+  let wrist = leftHand.keypoints[0];
+let palm = leftHand.keypoints[9];
+let palmSize = dist(wrist.x, wrist.y, palm.x, palm.y);
+let closedFingers = 0;
+
+for (let i = 0; i < fingers.length; i++) {
+  let finger = fingers[i];
+  let distance = dist(finger.x, finger.y, wrist.x, wrist.y);
+
+  if (distance < palmSize * 1.2) {
+    closedFingers++;
+  }
+}
+
+if (palmSize > 0 && closedFingers === 4) {
+  savedShapes = [];
+
+  for (let i = 0; i < sounds.length; i++) {
+    trackOn[i] = false;
+    sounds[i].amp(0);
+
+    pinching[i] = true;
+  }
+
+  return;
+}
+
   push();
 
   for (let i = 0; i < fingers.length; i++) {

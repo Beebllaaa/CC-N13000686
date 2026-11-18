@@ -1,34 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Week 10</title>
-
-  <link rel="stylesheet" href="../style.css">
-  <link rel="stylesheet" href="../info.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>week10</title>
+    <link rel="stylesheet" href="../../info.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/p5@2.3.4/lib/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.min.js"></script>
+    <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
 </head>
+<body>
+    <script src="leftHand.js"></script>
+    <script src="rightHand.js"></script>
+    <script src="face.js"></script>
+    <script src="sketch.js"></script>
+    <aside class="info-panel">
+      <button type="button" class="info-arrow" aria-label="work info">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M30 10 L16 24 L30 38" />
+        </svg>
+      </button>
 
-<body class="week-catalog">
-  <header>
-    <h1>Week 10</h1>
-    <p>Creative Coding</p>
-  </header>
+      <div class="info-content">
+        <h2>Week 10</h2>
 
-  <main class="assignments">
-  <a class="box" href="./week10-1/">
-    <span>Practice 1</span>
-    <img src="../images/week10.1.jpg" alt="Week 10 Practice 1">
-  </a>
+        <h3>About this work</h3>
+   <p><strong>Turn tracks on or off.</strong> Pinch your left thumb and one of your other fingertips together. From index finger to pinky, the tracks are drums, bass, guitar, and keys. Release and pinch the same finger again to turn its track off.</p>
 
-  <a class="box" href="./week10-2/">
-    <span>Practice 2</span>
-    <img src="../images/week10.2.jpg" alt="Week 10 Practice 2">
-  </a>
+<p><strong>Shape the visual.</strong> Move and spread the fingers of your right hand to reshape the polygon. Its color changes with the sound.</p>
 
-</main>
+<p><strong>Control the volume.</strong> Open your mouth wider to make the active tracks louder. Close your mouth to mute them.</p>
+       
+<p><strong>Leave a shape.</strong> Move your right hand to create a shape, then press the spacebar to leave it in place. Keep moving and press again to add more shapes. All shapes continue changing color with the music.</p>
 
-  <a class="back" href="../index.html">← Back</a>
+<p><strong>Clear and mute.</strong> Make a fist with your left hand to clear the saved shapes and mute all tracks. Open your hand and pinch a fingertip again to turn a track back on.</p>
+
+        <h3>Process</h3>
+        <p>
+  I started with the class example that plays a drum sound on click. I used HandPose to replace the click with a finger pinch, then extended the same interaction to four tracks.
+</p> <p>
+After mirroring the camera with "flipped: true", the fingertip markers no longer lined up with my hand, so I adjusted their positions using "width - x". At first, each pinch restarted a track, which made the loops fall out of sync. I changed the code so the first pinch starts all four loops together, and later pinches mute or unmute each track without restarting it.
+</p>  <p>
+On screen, hollow and solid circles show which tracks are on. The five fingertips of my right hand form a polygon that changes color with the sound frequencies measured by FFT.
+</p>  <p>
+ I tried using my right hand to adjust each track’s volume, but the ring and pinky fingers were hard to control, so I switched to opening and closing my mouth to control the overall volume.
+</p>
+<p>
+  I then added a way to leave shapes on the screen. Pressing the spacebar copies the current right-hand fingertip positions into an array. The saved shapes stay in place, while their colors continue changing with the music. I can move my hand and press space again to build up a composition. Finally, I added a left-hand fist gesture to clear the saved shapes and mute all tracks, so I can start a new composition.
+</p>
+      </div>
+    </aside>
 </body>
 </html>
