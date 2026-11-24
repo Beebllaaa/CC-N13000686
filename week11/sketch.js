@@ -4,10 +4,12 @@ let url = "https://global-warming.org/api/arctic-api";
 let years = [];
 let iceValues = [];
 let yearSlider;
+let bear;
 
 async function setup() {
-  createCanvas(800, 600);
+  createCanvas(windowWidth, windowHeight);
 
+  bear = await loadImage("assets/polar bear.png");
   data = await loadJSON(url);
 
   for (let year = 1979; year <= 2026; year++) {
@@ -21,8 +23,8 @@ async function setup() {
   }
 
   yearSlider = createSlider(0, years.length - 1, 0, 1);
-  yearSlider.position(50, 540);
-  yearSlider.size(700);
+  yearSlider.position(windowWidth/2-300, 700);
+  yearSlider.size(600);
 }
 
 function draw() {
@@ -32,20 +34,20 @@ function draw() {
   // Ocean
   noStroke();
   fill(49, 94, 123);
-  rect(0, 350, width, 250);
+  rect(0, 350, width, 500);
 
   // Get current data
   let index = yearSlider.value();
   let year = years[index];
   let ice = iceValues[index];
 
-  // Map sea ice extent to ice width
+  // Ice width
   let iceWidth = map(
     ice,
     min(iceValues),
     max(iceValues),
     150,
-    650
+    1000
   );
 
   // Draw ice
@@ -55,12 +57,13 @@ function draw() {
   // Underwater ice
   fill(192, 220, 231);
   beginShape();
-  vertex(-10, 0);
+  vertex(0, 0);
   vertex(iceWidth, 0);
-  vertex(iceWidth * 0.95, 48);
-  vertex(iceWidth * 0.75, 60);
-  vertex(iceWidth * 0.45, 52);
-  vertex(iceWidth * 0.15, 58);
+  vertex(iceWidth * 0.91, 145);
+  vertex(iceWidth * 0.75, 120);
+  vertex(iceWidth * 0.55, 150);
+  vertex(iceWidth * 0.25, 140);
+  vertex(iceWidth * 0.15, 130);
   endShape(CLOSE);
 
   // Ice above water
@@ -69,23 +72,53 @@ function draw() {
   vertex(0, 0);
   vertex(iceWidth * 0.15, -5);
   vertex(iceWidth * 0.4, 0);
-  vertex(iceWidth * 0.65, -6);
+    vertex(iceWidth * 0.65, -6);
   vertex(iceWidth * 0.85, -3);
   vertex(iceWidth, 0);
-  vertex(iceWidth * 0.98, 20);
-  vertex(iceWidth * 0.04, 20);
+  vertex(iceWidth * 0.988, 20);
+  vertex(iceWidth * 0.02, 20);
   endShape(CLOSE);
 
   pop();
+
+  // Number of polar bears
+  let bearCount = round(map(
+    ice,
+    min(iceValues),
+    max(iceValues),
+    1,
+    12
+  ));
+
+  // Draw polar bears
+  let bearWidth = 65;
+  let bearHeight = bearWidth * bear.height / bear.width;
+
+  for (let i = 0; i < bearCount; i++) {
+    let x = width / 2 - iceWidth / 2
+          + iceWidth / (bearCount + 1) * (i + 1);
+
+    image(
+      bear,
+      x - bearWidth / 2,
+      330 - bearHeight,
+      bearWidth,
+      bearHeight
+    );
+  }
 
   // Display year
   fill(255);
   textAlign(CENTER);
   textSize(32);
-  text(year, width / 2, 460);
+  text(year, width / 2, 600);
 
   // Display sea ice extent
   textSize(16);
   text("Global Sea Ice Extent: " + ice + " million km²",
-       width / 2, 495);
+       width / 2, 630);
+
+  textSize(12);
+  text("Polar bears represent habitat change, not population data.",
+       width / 2, 660);
 }
