@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 11</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../info.css">
+  <script src="js/p5.js"></script>
+</head>
+
+<body>
+
+  </div>
+
+  <!-- p5.js sketch -->
+  <script src="sketch.js"></script>
+
+  <aside class="info-panel">
+  <button
+  type="button"
+  class="info-arrow"
+  aria-label="作品说明"
+>
+  <svg viewBox="0 0 48 48" aria-hidden="true">
+    <path d="M30 10 L16 24 L30 38" />
+  </svg>
+</button>
+
+  <div class="info-content">
+    <h2>Week 11</h2>
+
+    <h3>About this work</h3>
+    <p>For this week's assignment, I wanted to explore how environmental data could be transformed into a visual experience. Instead of presenting data through traditional charts, I wanted to use a simple scene to show the relationship between environmental change and animal habitats.</p>
+
+<p>I chose sea ice extent as my data source and polar bears as my visual element. The viewer can move a slider to explore historical sea ice data from 1979 onwards. As the sea ice extent decreases, the ice becomes smaller, and fewer polar bears appear on it.</p>
+
+<p>The sea ice extent is based on real global data, while the number of polar bears is symbolic rather than actual population data. Through this simple visual interaction, I hope to make abstract environmental data more intuitive and emotionally meaningful.</p>
+
+    <h3>Process</h3>
+    <p>
+      At the beginning, I had some difficulty finding APIs because different websites organize their API documentation in different ways. After exploring several websites and asking AI for help, I gradually learned how to identify API endpoints. I also learned that some API URLs need to be constructed by combining a base URL with an endpoint and specific parameters.</p>
+
+<p>After obtaining the raw JSON, I used an online JSON formatter to organize the data and understand what each field represented. I explored the differences between value, anom, and monthlyMean. Finally, I selected value, which represents the actual sea ice extent, and extracted the data for May of each year as the basis for my visualization.</p>
+
+<p>For the visual design, I initially wanted to use a top-down view. However, placing multiple polar bears facing the same direction made the composition look rigid and visually disorganized. Therefore, I switched to a side view to better show the relationship between the size of the ice and the number of polar bears.</p>
+
+<p>Since I could not obtain accurate historical polar bear population data, and displaying the actual number of polar bears would also be impractical, I used the map() function to connect the sea ice extent to the width of the ice and the number of polar bear images. The number of images symbolically represents potential changes in the polar bear population rather than actual population figures.</p>
+    </p>
+
+    <a href="assets/week11 -api.png" target="_blank">
+    <img src="assets/week11 -api.png" alt="Working Process"style="width: 100%;">
+</a>
+
+  </div>
+</aside>
+
+</body>
+
+</html>
