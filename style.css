@@ -30,18 +30,21 @@ body { min-height: 100vh; margin: 0; background: var(--paper); color: var(--ink)
 .placeholder small { display: none; }
 .placeholder:hover { flex-grow: 2; }
 
-.swatch-silver { background: #ebe493; color: #222; }
+.swatch-silver { background: #ffd06b;}
 .swatch-violet { background: #867ebe; }
 .swatch-blue { background: #1766b8; }
 .swatch-cyan { background: #008d9b; }
 .swatch-green { background: #57a678; }
-.swatch-rust { background: #db644c; }
+.swatch-rust { background: #f47c64; }
 .swatch-red { background: #f79012; }
 .swatch-pink { background: #ec5a86; }
 .swatch-yellow { background: #ffc20b;}
 .swatch-lilac { background: #aab7d7; }
-.swatch-slate { background: #65798a; }
-.swatch-charcoal { background: #2d353b; }
+.swatch-slate { background: #6ac7bf; }
+.swatch-charcoal { background: #4d94ca; }
+.swatch-proposal { background: #9b7bb3; }
+.swatch-thirteen { background: #78bfb0; }
+.swatch-fourteen { background: #ffe469; }
 
 @media (max-width: 760px) {
   .catalog { padding: 22px; }
